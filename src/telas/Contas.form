@@ -21,11 +21,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jScrollPane1" alignment="1" pref="749" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="Botao_Pagar" min="-2" pref="107" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="Botao_Receber" min="-2" pref="107" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="Botao_Quitado" min="-2" pref="107" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
               <Component id="Botao_Sair" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -36,10 +34,7 @@
               <Component id="jScrollPane1" min="-2" pref="268" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                      <Component id="Botao_Pagar" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                      <Component id="Botao_Receber" alignment="3" min="-2" pref="56" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="Botao_Quitado" alignment="1" min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="Botao_Sair" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -58,10 +53,12 @@
         <Component class="javax.swing.JTable" name="Tabela_Conta">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="15">
+              <Table columnCount="8" rowCount="15">
                 <Column editable="true" title="Nome" type="java.lang.Object"/>
                 <Column editable="true" title="Fornecedor" type="java.lang.Object"/>
-                <Column editable="true" title="Valor" type="java.lang.Object"/>
+                <Column editable="true" title="Valor Individual" type="java.lang.Object"/>
+                <Column editable="true" title="Quantidade" type="java.lang.Object"/>
+                <Column editable="true" title="Valor Total" type="java.lang.Object"/>
                 <Column editable="true" title="Data de Compra" type="java.lang.Object"/>
                 <Column editable="true" title="Data de Vencimento" type="java.lang.Object"/>
                 <Column editable="true" title="Tipo" type="java.lang.Object"/>
@@ -69,6 +66,16 @@
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -108,19 +115,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="Botao_Pagar">
+    <Component class="javax.swing.JButton" name="Botao_Quitado">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pagar"/>
+        <Property name="text" type="java.lang.String" value="Quitado"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Botao_Sair">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sair"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="Botao_Receber">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Receber"/>
       </Properties>
     </Component>
   </SubComponents>

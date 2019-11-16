@@ -41,7 +41,7 @@ public class Cadastro_Fornecedor extends javax.swing.JInternalFrame {
         Text_CPF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabela_Fornecedor = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Menu_Cadastro_Clientes = new javax.swing.JMenuItem();
@@ -78,7 +78,7 @@ public class Cadastro_Fornecedor extends javax.swing.JInternalFrame {
 
         jLabel4.setText("CNPJ:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Fornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -97,7 +97,7 @@ public class Cadastro_Fornecedor extends javax.swing.JInternalFrame {
                 "Nome", "Telefone", "Email", "CNPJ"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabela_Fornecedor);
 
         jMenu1.setText("Cadastros");
 
@@ -191,7 +191,7 @@ public class Cadastro_Fornecedor extends javax.swing.JInternalFrame {
                             .addComponent(Botao_Excluir))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                         .addComponent(Botao_Sair, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -217,6 +217,7 @@ public class Cadastro_Fornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem Menu_Cadastro_Clientes;
     private javax.swing.JMenuItem Menu_Cadastro_Fornecedores;
     private javax.swing.JMenuItem Menu_Cadastro_Produtos;
+    private javax.swing.JTable Tabela_Fornecedor;
     private javax.swing.JTextField Text_CPF;
     private javax.swing.JTextField Text_Email;
     private javax.swing.JTextField Text_Nome;
@@ -229,6 +230,5 @@ public class Cadastro_Fornecedor extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

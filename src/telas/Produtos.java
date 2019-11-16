@@ -29,7 +29,7 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         Botao_Sair = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabela_Produtos_Consulta = new javax.swing.JTable();
         Botao_Saida = new javax.swing.JButton();
         Botao_Saida1 = new javax.swing.JButton();
         Text_Quantidade = new javax.swing.JTextField();
@@ -43,7 +43,7 @@ public class Produtos extends javax.swing.JInternalFrame {
 
         Botao_Sair.setText("Sair");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Produtos_Consulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -63,7 +63,7 @@ public class Produtos extends javax.swing.JInternalFrame {
                 "Código", "Nome", "Preço de Venda", "Preço de Compra", "Quantidade"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabela_Produtos_Consulta);
 
         Botao_Saida.setText("saida");
 
@@ -153,12 +153,12 @@ public class Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem Menu_Cadastro_Clientes;
     private javax.swing.JMenuItem Menu_Cadastro_Fornecedores;
     private javax.swing.JMenuItem Menu_Cadastro_Produtos;
+    private javax.swing.JTable Tabela_Produtos_Consulta;
     private javax.swing.JTextField Text_Quantidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

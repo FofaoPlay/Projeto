@@ -28,6 +28,19 @@ public class Cadastro_Produtos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         Botao_Sair = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Tabela_Produtos = new javax.swing.JTable();
+        Text_Nome = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        Text_Nome1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        Text_Nome2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Text_Nome3 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        Botao_Inserir = new javax.swing.JButton();
+        Botao_Remover = new javax.swing.JButton();
+        Botao_Alterar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Menu_Cadastro_Clientes = new javax.swing.JMenuItem();
@@ -36,6 +49,46 @@ public class Cadastro_Produtos extends javax.swing.JInternalFrame {
         jMenu2 = new javax.swing.JMenu();
 
         Botao_Sair.setText("Sair");
+
+        Tabela_Produtos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nome", "Preço de Venda", "Preço de Compra", "Quantidade"
+            }
+        ));
+        jScrollPane1.setViewportView(Tabela_Produtos);
+
+        jLabel1.setText("Nome:");
+
+        jLabel2.setText("Preço de Venda:");
+
+        jLabel3.setText("Preço de Compra:");
+
+        jLabel4.setText("Quantidade:");
+
+        Botao_Inserir.setText("Inserir");
+        Botao_Inserir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_InserirActionPerformed(evt);
+            }
+        });
+
+        Botao_Remover.setText("Remover");
+
+        Botao_Alterar.setText("Alterar");
 
         jMenu1.setText("Cadastros");
 
@@ -67,11 +120,63 @@ public class Cadastro_Produtos extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 698, Short.MAX_VALUE)
                 .addComponent(Botao_Sair))
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Botao_Inserir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Botao_Alterar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addComponent(Botao_Remover))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 297, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Botao_Inserir)
+                    .addComponent(Botao_Remover)
+                    .addComponent(Botao_Alterar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Botao_Sair))
         );
 
@@ -82,14 +187,31 @@ public class Cadastro_Produtos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Menu_Cadastro_FornecedoresActionPerformed
 
+    private void Botao_InserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_InserirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Botao_InserirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Botao_Alterar;
+    private javax.swing.JButton Botao_Inserir;
+    private javax.swing.JButton Botao_Remover;
     private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem Menu_Cadastro_Clientes;
     private javax.swing.JMenuItem Menu_Cadastro_Fornecedores;
     private javax.swing.JMenuItem Menu_Cadastro_Produtos;
+    private javax.swing.JTable Tabela_Produtos;
+    private javax.swing.JTextField Text_Nome;
+    private javax.swing.JTextField Text_Nome1;
+    private javax.swing.JTextField Text_Nome2;
+    private javax.swing.JTextField Text_Nome3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
