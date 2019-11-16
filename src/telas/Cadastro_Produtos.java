@@ -71,7 +71,7 @@ public class Cadastro_Produtos extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 301, Short.MAX_VALUE)
+                .addGap(0, 297, Short.MAX_VALUE)
                 .addComponent(Botao_Sair))
         );
 
