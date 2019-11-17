@@ -33,10 +33,16 @@ public class Escolha extends javax.swing.JFrame {
         Pass_Boss = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        Botao_Fechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Entrar_boss.setText("Entrar");
+        Entrar_boss.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Entrar_bossActionPerformed(evt);
+            }
+        });
 
         Entrar_Financeiro.setText("Entrar");
         Entrar_Financeiro.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +54,8 @@ public class Escolha extends javax.swing.JFrame {
         jLabel1.setText("Chefe");
 
         jLabel2.setText("Financeio");
+
+        Botao_Fechar.setText("Fechar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,11 +79,15 @@ public class Escolha extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 293, Short.MAX_VALUE)
                 .addComponent(Pass_Financeiro, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(95, 95, 95))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(Botao_Fechar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addComponent(Botao_Fechar)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
@@ -96,6 +108,10 @@ public class Escolha extends javax.swing.JFrame {
     private void Entrar_FinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entrar_FinanceiroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Entrar_FinanceiroActionPerformed
+
+    private void Entrar_bossActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Entrar_bossActionPerformed
+
+    }//GEN-LAST:event_Entrar_bossActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,6 +150,7 @@ public class Escolha extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Botao_Fechar;
     private javax.swing.JButton Entrar_Financeiro;
     private javax.swing.JButton Entrar_boss;
     private javax.swing.JPasswordField Pass_Boss;

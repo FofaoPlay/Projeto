@@ -34,27 +34,30 @@ public class Contas extends javax.swing.JInternalFrame {
 
         Tabela_Conta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Fornecedor", "Valor Individual", "Quantidade", "Valor Total", "Data de Compra", "Data de Vencimento", "Tipo"
+                "Código", "Nome", "Fornecedor", "Valor Individual", "Quantidade", "Valor Total", "Data de Compra", "Data de Vencimento", "Tipo"
             }
         ));
         jScrollPane1.setViewportView(Tabela_Conta);
+        if (Tabela_Conta.getColumnModel().getColumnCount() > 0) {
+            Tabela_Conta.getColumnModel().getColumn(8).setResizable(false);
+        }
 
         Botao_Quitado.setText("Quitado");
 

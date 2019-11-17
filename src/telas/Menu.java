@@ -36,6 +36,11 @@ public class Menu extends javax.swing.JInternalFrame {
         jMenu2 = new javax.swing.JMenu();
 
         Botao_Sair.setText("Sair");
+        Botao_Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_SairActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Cadastros");
 
@@ -81,6 +86,10 @@ public class Menu extends javax.swing.JInternalFrame {
     private void Menu_Cadastro_FornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu_Cadastro_FornecedoresActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Menu_Cadastro_FornecedoresActionPerformed
+
+    private void Botao_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SairActionPerformed
+        
+    }//GEN-LAST:event_Botao_SairActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
