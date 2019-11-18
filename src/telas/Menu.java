@@ -33,7 +33,13 @@ public class Menu extends javax.swing.JInternalFrame {
         Menu_Cadastro_Clientes = new javax.swing.JMenuItem();
         Menu_Cadastro_Fornecedores = new javax.swing.JMenuItem();
         Menu_Cadastro_Produtos = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        Menu_Pedido = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        Menu_Venda = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        Menu_Historico_geral = new javax.swing.JMenuItem();
+        Menu_Historico_cliente = new javax.swing.JMenuItem();
+        Menu_Historico_Forn = new javax.swing.JMenuItem();
 
         Botao_Sair.setText("Sair");
         Botao_Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -60,8 +66,28 @@ public class Menu extends javax.swing.JInternalFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Produtos");
-        jMenuBar1.add(jMenu2);
+        Menu_Pedido.setText("Estoques");
+
+        jMenuItem2.setText("Pedido");
+        Menu_Pedido.add(jMenuItem2);
+
+        Menu_Venda.setText("Vendas");
+        Menu_Pedido.add(Menu_Venda);
+
+        jMenuBar1.add(Menu_Pedido);
+
+        jMenu3.setText("Histórico");
+
+        Menu_Historico_geral.setText("Geral");
+        jMenu3.add(Menu_Historico_geral);
+
+        Menu_Historico_cliente.setText("Clientes");
+        jMenu3.add(Menu_Historico_cliente);
+
+        Menu_Historico_Forn.setText("Fornecedores");
+        jMenu3.add(Menu_Historico_Forn);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -97,8 +123,14 @@ public class Menu extends javax.swing.JInternalFrame {
     private javax.swing.JMenuItem Menu_Cadastro_Clientes;
     private javax.swing.JMenuItem Menu_Cadastro_Fornecedores;
     private javax.swing.JMenuItem Menu_Cadastro_Produtos;
+    private javax.swing.JMenuItem Menu_Historico_Forn;
+    private javax.swing.JMenuItem Menu_Historico_cliente;
+    private javax.swing.JMenuItem Menu_Historico_geral;
+    private javax.swing.JMenu Menu_Pedido;
+    private javax.swing.JMenuItem Menu_Venda;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
