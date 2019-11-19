@@ -5,6 +5,9 @@
  */
 package Telas;
 
+import Classes.Produtos;
+import java.sql.Connection;
+
 /**
  *
  * @author Fofao
@@ -29,16 +32,15 @@ public class CadastroProdutos extends javax.swing.JFrame {
 
         Text_Nome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        Text_Nome1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        Text_Nome2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Text_Nome3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         Botao_Sair = new javax.swing.JButton();
         Botao_Cadastro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Produtos = new javax.swing.JTable();
+        Text_PrecoCompra = new javax.swing.JFormattedTextField();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -74,6 +76,11 @@ public class CadastroProdutos extends javax.swing.JFrame {
         });
 
         Botao_Cadastro.setText("Cadastrar");
+        Botao_Cadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Botao_CadastroMouseClicked(evt);
+            }
+        });
         Botao_Cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Botao_CadastroActionPerformed(evt);
@@ -100,6 +107,15 @@ public class CadastroProdutos extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(Tabela_Produtos);
+
+        Text_PrecoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        Text_PrecoCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_PrecoCompraActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextField1.setText("jFormattedTextField1");
 
         MenuCadastros.setText("Cadastros");
 
@@ -187,24 +203,24 @@ public class CadastroProdutos extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Botao_Cadastro))
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Text_PrecoCompra))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(0, 306, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Botao_Cadastro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Botao_Sair)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Botao_Sair))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel4)
+                                .addGap(0, 327, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -213,29 +229,28 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Text_PrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Botao_Cadastro)
+                            .addComponent(Botao_Sair))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Botao_Cadastro)
-                    .addComponent(Botao_Sair))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addComponent(jLabel3)
+                        .addGap(89, 89, 89))))
         );
 
         pack();
@@ -301,6 +316,22 @@ public class CadastroProdutos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
 
+    private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
+        Connection conn = null;
+        Produtos p = new Produtos();
+        String c = String.valueOf(Text_PrecoCompra);
+        
+        p.setNome(Text_Nome.getText());
+        p.setPrecocompra(Double.parseDouble(c));
+        p.setPrecocompra(Double.parseDouble(c));
+        
+        p.cadastrar(conn);
+    }//GEN-LAST:event_Botao_CadastroMouseClicked
+
+    private void Text_PrecoCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_PrecoCompraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_PrecoCompraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -351,9 +382,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Produtos;
     private javax.swing.JTextField Text_Nome;
-    private javax.swing.JTextField Text_Nome1;
-    private javax.swing.JTextField Text_Nome2;
-    private javax.swing.JTextField Text_Nome3;
+    private javax.swing.JFormattedTextField Text_PrecoCompra;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
