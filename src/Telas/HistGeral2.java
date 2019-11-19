@@ -9,12 +9,12 @@ package Telas;
  *
  * @author Fofao
  */
-public class HistGeral2 extends javax.swing.JFrame {
+public class HistGeral extends javax.swing.JFrame {
 
     /**
      * Creates new form Contas
      */
-    public HistGeral2() {
+    public HistGeral() {
         initComponents();
     }
 
@@ -219,7 +219,7 @@ public class HistGeral2 extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
 
     private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
-        CadastroProdutos2 c = new CadastroProdutos2();
+        CadastroProdutos c = new CadastroProdutos();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
@@ -243,7 +243,7 @@ public class HistGeral2 extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSaldosActionPerformed
 
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral2 c = new HistGeral2();
+        HistGeral c = new HistGeral();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
@@ -271,21 +271,23 @@ public class HistGeral2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HistGeral.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistGeral2().setVisible(true);
+                new HistGeral().setVisible(true);
             }
         });
     }
