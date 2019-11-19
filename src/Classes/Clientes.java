@@ -70,7 +70,28 @@ public class Clientes {
             System.out.println("Erro de Banco de dados");
     }
     }
+    public void Consultar(Connection conn){
+        
+    }
     
-    
+    public void Alterar(Connection conn){
+        String sqlInsert = "INSERT INTO clientes(Nome, Telefone, Email, Cpf_Cnpj) VALUES (?, ?, ?, ?)";
+        
+        PreparedStatement stm = null;
+        try{
+            stm = conn.prepareStatement(sqlInsert);
+            
+            
+            stm.setString(1, getNome());
+            stm.setString(2, getTelefone());
+            stm.setString(3, getEmail());
+            stm.setString(4, getCpfcnpj());
+            
+            stm.execute();
+        }
+        catch (SQLException u) {
+            System.out.println("Erro de Banco de dados");
+    }
+    }
     
 }
