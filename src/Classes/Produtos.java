@@ -53,7 +53,7 @@ public class Produtos {
     }
     
     public void cadastrar(Connection conn){
-        String sqlInsert = "INSERT INTO contas(Nome, Quantidade, PrecoCompra, PrecoVenda) VALUES (?, ?, ?, ?)";
+        String sqlInsert = "INSERT INTO produtos(Nome, PrecoCompra, PrecoVenda, Quantidade) VALUES (?, ?, ?, ?)";
         
         PreparedStatement stm = null;
         try{

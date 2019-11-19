@@ -40,7 +40,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Produtos = new javax.swing.JTable();
         Text_PrecoCompra = new javax.swing.JFormattedTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        Text_PrecoVenda = new javax.swing.JFormattedTextField();
+        Text_Quant = new javax.swing.JFormattedTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -108,14 +109,16 @@ public class CadastroProdutos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabela_Produtos);
 
-        Text_PrecoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+        Text_PrecoCompra.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###0.00"))));
         Text_PrecoCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Text_PrecoCompraActionPerformed(evt);
             }
         });
 
-        jFormattedTextField1.setText("jFormattedTextField1");
+        Text_PrecoVenda.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
+
+        Text_Quant.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         MenuCadastros.setText("Cadastros");
 
@@ -216,10 +219,15 @@ public class CadastroProdutos extends javax.swing.JFrame {
                                 .addComponent(Botao_Sair))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                                    .addComponent(Text_PrecoVenda, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(20, 20, 20)
-                                .addComponent(jLabel4)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Text_Quant)))
                                 .addGap(0, 327, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -242,7 +250,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(Text_PrecoCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(Text_PrecoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Text_Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Botao_Cadastro)
@@ -319,11 +328,14 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
         Connection conn = null;
         Produtos p = new Produtos();
+        String a = String.valueOf(Text_PrecoCompra);
+        String b = String.valueOf(Text_PrecoCompra);
         String c = String.valueOf(Text_PrecoCompra);
         
         p.setNome(Text_Nome.getText());
-        p.setPrecocompra(Double.parseDouble(c));
-        p.setPrecocompra(Double.parseDouble(c));
+        p.setPrecocompra(Double.parseDouble(String.valueOf(Text_PrecoCompra)));
+        p.setPrecocompra(Double.parseDouble(String.valueOf(Text_PrecoVenda)));
+        p.setQuantidade(Integer.parseInt(String.valueOf(Text_Quant)));
         
         p.cadastrar(conn);
     }//GEN-LAST:event_Botao_CadastroMouseClicked
@@ -383,7 +395,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private javax.swing.JTable Tabela_Produtos;
     private javax.swing.JTextField Text_Nome;
     private javax.swing.JFormattedTextField Text_PrecoCompra;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField Text_PrecoVenda;
+    private javax.swing.JFormattedTextField Text_Quant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
