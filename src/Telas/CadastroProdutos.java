@@ -326,8 +326,8 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
-        Connection conn = new Conexao().getConnection();
-        p = new Produtos();
+        Connection conn = new Conec.Conexao().getConnection();
+        Produtos p = new Produtos();
         
         p.setNome(Text_Nome.getText());
         p.setPrecocompra(Double.parseDouble(String.valueOf(Text_PrecoCompra)));
