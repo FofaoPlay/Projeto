@@ -78,6 +78,16 @@ public class HistFornecedor extends javax.swing.JFrame {
         MenuCadastros.setText("Cadastros");
 
         MenuCadastroClientes.setText("Clientes");
+        MenuCadastroClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuCadastroClientesMouseClicked(evt);
+            }
+        });
+        MenuCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastroClientesActionPerformed(evt);
+            }
+        });
         MenuCadastros.add(MenuCadastroClientes);
 
         MenuCadastroFornecedores.setText("Fornecedores");
@@ -89,6 +99,11 @@ public class HistFornecedor extends javax.swing.JFrame {
         MenuCadastros.add(MenuCadastroFornecedores);
 
         MenuCadastroProdutos.setText("Produtos");
+        MenuCadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastroProdutosActionPerformed(evt);
+            }
+        });
         MenuCadastros.add(MenuCadastroProdutos);
 
         jMenuBar1.add(MenuCadastros);
@@ -96,12 +111,27 @@ public class HistFornecedor extends javax.swing.JFrame {
         MenuFinanceiro.setText("Financeiro");
 
         MenuPedidos.setText("Pedido");
+        MenuPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuPedidosActionPerformed(evt);
+            }
+        });
         MenuFinanceiro.add(MenuPedidos);
 
         MenuVendas.setText("Vendas");
+        MenuVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuVendasActionPerformed(evt);
+            }
+        });
         MenuFinanceiro.add(MenuVendas);
 
         MenuSaldos.setText("Saldos");
+        MenuSaldos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuSaldosActionPerformed(evt);
+            }
+        });
         MenuFinanceiro.add(MenuSaldos);
 
         jMenuBar1.add(MenuFinanceiro);
@@ -109,12 +139,27 @@ public class HistFornecedor extends javax.swing.JFrame {
         MenuHistorico.setText("Histórico");
 
         MenuHistoricogeral.setText("Geral");
+        MenuHistoricogeral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuHistoricogeralActionPerformed(evt);
+            }
+        });
         MenuHistorico.add(MenuHistoricogeral);
 
         MenuHistoricoCliente.setText("Clientes");
+        MenuHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuHistoricoClienteActionPerformed(evt);
+            }
+        });
         MenuHistorico.add(MenuHistoricoCliente);
 
         MenuHistoricoForn.setText("Fornecedores");
+        MenuHistoricoForn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuHistoricoFornActionPerformed(evt);
+            }
+        });
         MenuHistorico.add(MenuHistoricoForn);
 
         jMenuBar1.add(MenuHistorico);
@@ -152,9 +197,63 @@ public class HistFornecedor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
+
+    }//GEN-LAST:event_MenuCadastroClientesMouseClicked
+
+    private void MenuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroClientesActionPerformed
+        CadastroClientes c = new CadastroClientes();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuCadastroClientesActionPerformed
+
     private void MenuCadastroFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFornecedoresActionPerformed
-        // TODO add your handling code here:
+        CadastroFornecedor c = new CadastroFornecedor();
+        c.setVisible(true);
+        dispose();
     }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
+
+    private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
+        CadastroProdutos c = new CadastroProdutos();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
+
+    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
+        Pedidos c = new Pedidos();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuPedidosActionPerformed
+
+    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
+        Vendas c = new Vendas();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuVendasActionPerformed
+
+    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
+        Saldos c = new Saldos();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuSaldosActionPerformed
+
+    private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
+        HistGeral c = new HistGeral();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuHistoricogeralActionPerformed
+
+    private void MenuHistoricoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoClienteActionPerformed
+        HistClientes c = new HistClientes();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuHistoricoClienteActionPerformed
+
+    private void MenuHistoricoFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoFornActionPerformed
+        HistFornecedor c = new HistFornecedor();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuHistoricoFornActionPerformed
 
     /**
      * @param args the command line arguments
