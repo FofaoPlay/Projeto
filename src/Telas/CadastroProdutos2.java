@@ -308,7 +308,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSaldosActionPerformed
 
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral c = new HistGeral();
+        HistGeral2 c = new HistGeral2();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed

@@ -209,7 +209,7 @@ public class Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
 
     private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
-        CadastroProdutos c = new CadastroProdutos();
+        CadastroProdutos2 c = new CadastroProdutos2();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
@@ -233,7 +233,7 @@ public class Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSaldosActionPerformed
 
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral c = new HistGeral();
+        HistGeral2 c = new HistGeral2();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
