@@ -12,12 +12,12 @@ import java.sql.Connection;
  *
  * @author Fofao
  */
-public class CadastroProdutos extends javax.swing.JFrame {
+public class CadastroProdutos2 extends javax.swing.JFrame {
 
     /**
      * Creates new form CadastroProdutos
      */
-    public CadastroProdutos() {
+    public CadastroProdutos2() {
         initComponents();
     }
 
@@ -284,7 +284,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
 
     private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
-        CadastroProdutos c = new CadastroProdutos();
+        CadastroProdutos2 c = new CadastroProdutos2();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
@@ -308,7 +308,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuSaldosActionPerformed
 
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral c = new HistGeral();
+        HistGeral2 c = new HistGeral2();
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
@@ -348,13 +348,13 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -362,7 +362,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroProdutos().setVisible(true);
+                new CadastroProdutos2().setVisible(true);
             }
         });
     }
