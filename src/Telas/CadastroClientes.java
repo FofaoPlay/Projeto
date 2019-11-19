@@ -5,6 +5,11 @@
  */
 package Telas;
 
+import Classes.Clientes;
+import Classes.Produtos;
+import Conec.Conexao;
+import java.sql.Connection;
+
 /**
  *
  * @author Fofao
@@ -76,6 +81,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         });
 
         Botao_Cadastrar.setText("Cadastrar");
+        Botao_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_CadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("CPF/CNPJ:");
 
@@ -324,6 +334,18 @@ public class CadastroClientes extends javax.swing.JFrame {
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
+
+    private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Clientes p = new Clientes();
+        
+        p.setNome(Text_Nome.getText());
+        p.setTelefone(Text_Telefone.getText());
+        p.setEmail(Text_Email.getText());
+        p.setCpfcnpj(Text_CPF.getText());
+        
+        p.cadastrar(conn);
+    }//GEN-LAST:event_Botao_CadastrarActionPerformed
 
     /**
      * @param args the command line arguments

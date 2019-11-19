@@ -52,7 +52,7 @@ public class Clientes {
         this.cpfcnpj = cpfcnpj;
     }
     public void cadastrar(Connection conn){
-        String sqlInsert = "INSERT INTO fornecedores(Nome, Telefone, Email, Cpf_Cnpj) VALUES (?, ?, ?, ?)";
+        String sqlInsert = "INSERT INTO clientes(Nome, Telefone, Email, Cpf_Cnpj) VALUES (?, ?, ?, ?)";
         
         PreparedStatement stm = null;
         try{
