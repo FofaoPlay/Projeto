@@ -80,22 +80,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuHistoricogeralActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuHistoricoCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Clientes"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuHistoricoClienteActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuHistoricoForn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Fornecedores"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuHistoricoFornActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
@@ -131,16 +115,14 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="Text_Quantidade" min="-2" pref="134" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="Botao_Saida1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="Botao_Saida" min="-2" pref="71" max="-2" attributes="0"/>
-                      <EmptySpace pref="300" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Botao_Confirma" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="Botao_Sair" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="780" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -155,8 +137,7 @@
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Text_Quantidade" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Botao_Saida1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Botao_Saida" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Botao_Confirma" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Botao_Sair" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -191,30 +172,25 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="Botao_Saida">
+    <Component class="javax.swing.JButton" name="Botao_Confirma">
       <Properties>
-        <Property name="text" type="java.lang.String" value="saida"/>
+        <Property name="text" type="java.lang.String" value="Confirmar"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="Botao_Saida1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="entrada"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Botao_Saida1ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="Text_Quantidade">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade a ser alterada:"/>
+        <Property name="text" type="java.lang.String" value="Quantidade vendida:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Botao_Sair">
       <Properties>
         <Property name="text" type="java.lang.String" value="Sair"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Botao_SairMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

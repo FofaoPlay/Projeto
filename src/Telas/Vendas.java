@@ -29,8 +29,7 @@ public class Vendas extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Produtos_Consulta = new javax.swing.JTable();
-        Botao_Saida = new javax.swing.JButton();
-        Botao_Saida1 = new javax.swing.JButton();
+        Botao_Confirma = new javax.swing.JButton();
         Text_Quantidade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Botao_Sair = new javax.swing.JButton();
@@ -45,8 +44,6 @@ public class Vendas extends javax.swing.JFrame {
         MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
-        MenuHistoricoCliente = new javax.swing.JMenuItem();
-        MenuHistoricoForn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,18 +69,16 @@ public class Vendas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabela_Produtos_Consulta);
 
-        Botao_Saida.setText("saida");
+        Botao_Confirma.setText("Confirmar");
 
-        Botao_Saida1.setText("entrada");
-        Botao_Saida1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_Saida1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Quantidade a ser alterada:");
+        jLabel1.setText("Quantidade vendida:");
 
         Botao_Sair.setText("Sair");
+        Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Botao_SairMouseClicked(evt);
+            }
+        });
 
         MenuCadastros.setText("Cadastros");
 
@@ -156,22 +151,6 @@ public class Vendas extends javax.swing.JFrame {
         });
         MenuHistorico.add(MenuHistoricogeral);
 
-        MenuHistoricoCliente.setText("Clientes");
-        MenuHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoClienteActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoCliente);
-
-        MenuHistoricoForn.setText("Fornecedores");
-        MenuHistoricoForn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoFornActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoForn);
-
         jMenuBar1.add(MenuHistorico);
 
         setJMenuBar(jMenuBar1);
@@ -187,15 +166,13 @@ public class Vendas extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(Botao_Saida1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Botao_Saida, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 300, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Botao_Confirma)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Botao_Sair))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -206,8 +183,7 @@ public class Vendas extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Botao_Saida1)
-                    .addComponent(Botao_Saida)
+                    .addComponent(Botao_Confirma)
                     .addComponent(jLabel1)
                     .addComponent(Botao_Sair))
                 .addContainerGap(55, Short.MAX_VALUE))
@@ -215,10 +191,6 @@ public class Vendas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Botao_Saida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_Saida1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Botao_Saida1ActionPerformed
 
     private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
 
@@ -266,17 +238,11 @@ public class Vendas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
 
-    private void MenuHistoricoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoClienteActionPerformed
-        HistClientes c = new HistClientes();
-        c.setVisible(true);
+    private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
+        Menu m = new Menu();
+        m.setVisible(true);
         dispose();
-    }//GEN-LAST:event_MenuHistoricoClienteActionPerformed
-
-    private void MenuHistoricoFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoFornActionPerformed
-        HistFornecedor c = new HistFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricoFornActionPerformed
+    }//GEN-LAST:event_Botao_SairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -315,8 +281,7 @@ public class Vendas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Botao_Saida;
-    private javax.swing.JButton Botao_Saida1;
+    private javax.swing.JButton Botao_Confirma;
     private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
@@ -324,8 +289,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCadastros;
     private javax.swing.JMenu MenuFinanceiro;
     private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricoCliente;
-    private javax.swing.JMenuItem MenuHistoricoForn;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuSaldos;

@@ -27,7 +27,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Botao_Alterar = new javax.swing.JButton();
         Text_Nome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Text_Nome1 = new javax.swing.JTextField();
@@ -37,10 +36,9 @@ public class CadastroProdutos extends javax.swing.JFrame {
         Text_Nome3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         Botao_Sair = new javax.swing.JButton();
-        Botao_Inserir = new javax.swing.JButton();
+        Botao_Cadastro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Produtos = new javax.swing.JTable();
-        Botao_Remover = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -52,14 +50,10 @@ public class CadastroProdutos extends javax.swing.JFrame {
         MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
-        MenuHistoricoCliente = new javax.swing.JMenuItem();
-        MenuHistoricoForn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Botao_Alterar.setText("Alterar");
-
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Nome do Produto:");
 
         jLabel2.setText("Preço de Venda:");
 
@@ -68,16 +62,21 @@ public class CadastroProdutos extends javax.swing.JFrame {
         jLabel4.setText("Quantidade:");
 
         Botao_Sair.setText("Sair");
+        Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Botao_SairMouseClicked(evt);
+            }
+        });
         Botao_Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Botao_SairActionPerformed(evt);
             }
         });
 
-        Botao_Inserir.setText("Inserir");
-        Botao_Inserir.addActionListener(new java.awt.event.ActionListener() {
+        Botao_Cadastro.setText("Cadastrar");
+        Botao_Cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_InserirActionPerformed(evt);
+                Botao_CadastroActionPerformed(evt);
             }
         });
 
@@ -101,8 +100,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(Tabela_Produtos);
-
-        Botao_Remover.setText("Remover");
 
         MenuCadastros.setText("Cadastros");
 
@@ -175,22 +172,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
         });
         MenuHistorico.add(MenuHistoricogeral);
 
-        MenuHistoricoCliente.setText("Clientes");
-        MenuHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoClienteActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoCliente);
-
-        MenuHistoricoForn.setText("Fornecedores");
-        MenuHistoricoForn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoFornActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoForn);
-
         jMenuBar1.add(MenuHistorico);
 
         setJMenuBar(jMenuBar1);
@@ -205,31 +186,25 @@ public class CadastroProdutos extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Botao_Inserir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Botao_Alterar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))
-                                .addGap(350, 350, 350))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Botao_Remover)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
-                                .addComponent(Botao_Sair)))))
+                            .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(0, 306, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Botao_Cadastro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Botao_Sair)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -239,28 +214,26 @@ public class CadastroProdutos extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
+                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                            .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text_Nome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Text_Nome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Text_Nome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Botao_Inserir)
-                    .addComponent(Botao_Remover)
-                    .addComponent(Botao_Alterar)
+                    .addComponent(Botao_Cadastro)
                     .addComponent(Botao_Sair))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -272,9 +245,9 @@ public class CadastroProdutos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Botao_SairActionPerformed
 
-    private void Botao_InserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_InserirActionPerformed
+    private void Botao_CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Botao_InserirActionPerformed
+    }//GEN-LAST:event_Botao_CadastroActionPerformed
 
     private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
 
@@ -322,17 +295,11 @@ public class CadastroProdutos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
 
-    private void MenuHistoricoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoClienteActionPerformed
-        HistClientes c = new HistClientes();
-        c.setVisible(true);
+    private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
+        Menu m = new Menu();
+        m.setVisible(true);
         dispose();
-    }//GEN-LAST:event_MenuHistoricoClienteActionPerformed
-
-    private void MenuHistoricoFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoFornActionPerformed
-        HistFornecedor c = new HistFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricoFornActionPerformed
+    }//GEN-LAST:event_Botao_SairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -370,9 +337,7 @@ public class CadastroProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Botao_Alterar;
-    private javax.swing.JButton Botao_Inserir;
-    private javax.swing.JButton Botao_Remover;
+    private javax.swing.JButton Botao_Cadastro;
     private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
@@ -380,8 +345,6 @@ public class CadastroProdutos extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCadastros;
     private javax.swing.JMenu MenuFinanceiro;
     private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricoCliente;
-    private javax.swing.JMenuItem MenuHistoricoForn;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuSaldos;

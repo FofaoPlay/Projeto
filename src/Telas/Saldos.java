@@ -38,8 +38,6 @@ public class Saldos extends javax.swing.JFrame {
         MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
-        MenuHistoricoCliente = new javax.swing.JMenuItem();
-        MenuHistoricoForn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,22 +112,6 @@ public class Saldos extends javax.swing.JFrame {
         });
         MenuHistorico.add(MenuHistoricogeral);
 
-        MenuHistoricoCliente.setText("Clientes");
-        MenuHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoClienteActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoCliente);
-
-        MenuHistoricoForn.setText("Fornecedores");
-        MenuHistoricoForn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoFornActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoForn);
-
         jMenuBar1.add(MenuHistorico);
 
         setJMenuBar(jMenuBar1);
@@ -194,18 +176,6 @@ public class Saldos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
 
-    private void MenuHistoricoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoClienteActionPerformed
-        HistClientes c = new HistClientes();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricoClienteActionPerformed
-
-    private void MenuHistoricoFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoFornActionPerformed
-        HistFornecedor c = new HistFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricoFornActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -248,8 +218,6 @@ public class Saldos extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCadastros;
     private javax.swing.JMenu MenuFinanceiro;
     private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricoCliente;
-    private javax.swing.JMenuItem MenuHistoricoForn;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuSaldos;

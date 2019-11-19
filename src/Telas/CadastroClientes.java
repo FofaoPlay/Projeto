@@ -53,8 +53,6 @@ public class CadastroClientes extends javax.swing.JFrame {
         MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
-        MenuHistoricoCliente = new javax.swing.JMenuItem();
-        MenuHistoricoForn = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +69,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         jLabel3.setText("Email:");
 
         Botao_Sair.setText("Sair");
+        Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Botao_SairMouseClicked(evt);
+            }
+        });
 
         Botao_Cadastrar.setText("Cadastrar");
 
@@ -101,7 +104,7 @@ public class CadastroClientes extends javax.swing.JFrame {
 
         Botao_Excluir.setText("Excluir");
 
-        Botao_Listar.setText("Listar (Atualizar)");
+        Botao_Listar.setText("Atualizar");
         Botao_Listar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Botao_ListarActionPerformed(evt);
@@ -179,22 +182,6 @@ public class CadastroClientes extends javax.swing.JFrame {
         });
         MenuHistorico.add(MenuHistoricogeral);
 
-        MenuHistoricoCliente.setText("Clientes");
-        MenuHistoricoCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoClienteActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoCliente);
-
-        MenuHistoricoForn.setText("Fornecedores");
-        MenuHistoricoForn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricoFornActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricoForn);
-
         jMenuBar1.add(MenuHistorico);
 
         setJMenuBar(jMenuBar1);
@@ -237,7 +224,7 @@ public class CadastroClientes extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                                 .addComponent(Botao_Listar)))))
                 .addContainerGap())
         );
@@ -332,17 +319,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
 
-    private void MenuHistoricoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoClienteActionPerformed
-        HistClientes c = new HistClientes();
-        c.setVisible(true);
+    private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
+        Menu m = new Menu();
+        m.setVisible(true);
         dispose();
-    }//GEN-LAST:event_MenuHistoricoClienteActionPerformed
-
-    private void MenuHistoricoFornActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricoFornActionPerformed
-        HistFornecedor c = new HistFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricoFornActionPerformed
+    }//GEN-LAST:event_Botao_SairMouseClicked
 
     /**
      * @param args the command line arguments
@@ -391,8 +372,6 @@ public class CadastroClientes extends javax.swing.JFrame {
     private javax.swing.JMenu MenuCadastros;
     private javax.swing.JMenu MenuFinanceiro;
     private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricoCliente;
-    private javax.swing.JMenuItem MenuHistoricoForn;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuSaldos;
