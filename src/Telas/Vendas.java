@@ -45,7 +45,6 @@ public class Vendas extends javax.swing.JFrame {
         MenuFinanceiro = new javax.swing.JMenu();
         MenuPedidos = new javax.swing.JMenuItem();
         MenuVendas = new javax.swing.JMenuItem();
-        MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
@@ -139,14 +138,6 @@ public class Vendas extends javax.swing.JFrame {
         });
         MenuFinanceiro.add(MenuVendas);
 
-        MenuSaldos.setText("Saldos");
-        MenuSaldos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuSaldosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuSaldos);
-
         jMenuBar1.add(MenuFinanceiro);
 
         MenuHistorico.setText("Histórico");
@@ -204,11 +195,11 @@ public class Vendas extends javax.swing.JFrame {
                             .addComponent(Text_Cliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Text_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)))))
+                            .addComponent(jLabel3))))
                 .addGap(18, 18, 18)
                 .addComponent(Botao_Confirma)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -250,12 +241,6 @@ public class Vendas extends javax.swing.JFrame {
         c.setVisible(true);
         dispose();
     }//GEN-LAST:event_MenuVendasActionPerformed
-
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-        Saldos c = new Saldos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuSaldosActionPerformed
 
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
@@ -316,7 +301,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JMenu MenuHistorico;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuSaldos;
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Produtos_Consulta;
     private javax.swing.JTextField Text_Cliente;

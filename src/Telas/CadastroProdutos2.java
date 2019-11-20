@@ -97,7 +97,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         Text_Venda = new javax.swing.JTextField();
         Botao_Alterar = new javax.swing.JButton();
         Botao_Excluir = new javax.swing.JButton();
-        Botao_Listar = new javax.swing.JButton();
         Text_id = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -108,11 +107,15 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         MenuFinanceiro = new javax.swing.JMenu();
         MenuPedidos = new javax.swing.JMenuItem();
         MenuVendas = new javax.swing.JMenuItem();
-        MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setText("Nome do Produto:");
 
@@ -186,13 +189,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             }
         });
 
-        Botao_Listar.setText("Atualizar");
-        Botao_Listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_ListarActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Código:");
 
         MenuCadastros.setText("Cadastros");
@@ -246,14 +242,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         });
         MenuFinanceiro.add(MenuVendas);
 
-        MenuSaldos.setText("Saldos");
-        MenuSaldos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuSaldosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuSaldos);
-
         jMenuBar1.add(MenuFinanceiro);
 
         MenuHistorico.setText("Histórico");
@@ -294,22 +282,24 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Text_Compra)
-                            .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(Text_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Text_Venda)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Text_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(Text_Quant))
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Botao_Listar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -319,33 +309,29 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(Botao_Listar)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))
-                            .addGap(26, 26, 26)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(26, 26, 26))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Text_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(Text_Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(37, 37, 37))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Text_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Text_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(Text_Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Botao_Cadastro)
                     .addComponent(Botao_Sair)
@@ -387,24 +373,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
 
-    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
-        Pedidos c = new Pedidos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuPedidosActionPerformed
-
-    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
-        Vendas c = new Vendas();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuVendasActionPerformed
-
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-        Saldos c = new Saldos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);
@@ -427,6 +395,11 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
 
         p.cadastrar(conn);
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
@@ -440,15 +413,12 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
 
         p.Alterar(conn);
-    }//GEN-LAST:event_Botao_AlterarActionPerformed
-
-    private void Botao_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ListarActionPerformed
         try {
             Consultar();
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_Botao_ListarActionPerformed
+    }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     private void Tabela_ProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ProdutosMouseClicked
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos.getModel();
@@ -466,7 +436,32 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         p.setId(Integer.parseInt(Text_id.getText()));
 
         p.Deletar(conn);
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowActivated
+
+    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
+        Vendas c = new Vendas();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuVendasActionPerformed
+
+    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
+        Pedidos c = new Pedidos();
+        c.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_MenuPedidosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -510,7 +505,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     private javax.swing.JButton Botao_Alterar;
     private javax.swing.JButton Botao_Cadastro;
     private javax.swing.JButton Botao_Excluir;
-    private javax.swing.JButton Botao_Listar;
     private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
@@ -520,7 +514,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     private javax.swing.JMenu MenuHistorico;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuSaldos;
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Produtos;
     private javax.swing.JTextField Text_Compra;

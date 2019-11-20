@@ -42,7 +42,6 @@ public class HistGeral2 extends javax.swing.JFrame {
         MenuFinanceiro = new javax.swing.JMenu();
         MenuPedidos = new javax.swing.JMenuItem();
         MenuVendas = new javax.swing.JMenuItem();
-        MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
@@ -137,14 +136,6 @@ public class HistGeral2 extends javax.swing.JFrame {
         });
         MenuFinanceiro.add(MenuVendas);
 
-        MenuSaldos.setText("Saldos");
-        MenuSaldos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuSaldosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuSaldos);
-
         jMenuBar1.add(MenuFinanceiro);
 
         MenuHistorico.setText("Histórico");
@@ -236,12 +227,6 @@ public class HistGeral2 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuVendasActionPerformed
 
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-        Saldos c = new Saldos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);
@@ -308,7 +293,6 @@ public class HistGeral2 extends javax.swing.JFrame {
     private javax.swing.JMenu MenuHistorico;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuSaldos;
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTextField Pesquisa;
     private javax.swing.JTable Tabela_Conta;

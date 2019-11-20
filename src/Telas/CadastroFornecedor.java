@@ -84,7 +84,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private void initComponents() {
 
         Botao_Excluir = new javax.swing.JButton();
-        Botao_Listar = new javax.swing.JButton();
         Text_Nome = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -108,23 +107,20 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         MenuFinanceiro = new javax.swing.JMenu();
         MenuPedidos = new javax.swing.JMenuItem();
         MenuVendas = new javax.swing.JMenuItem();
-        MenuSaldos = new javax.swing.JMenuItem();
         MenuHistorico = new javax.swing.JMenu();
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         Botao_Excluir.setText("Excluir");
         Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Botao_ExcluirActionPerformed(evt);
-            }
-        });
-
-        Botao_Listar.setText("Atualizar");
-        Botao_Listar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_ListarActionPerformed(evt);
             }
         });
 
@@ -242,14 +238,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         });
         MenuFinanceiro.add(MenuVendas);
 
-        MenuSaldos.setText("Saldos");
-        MenuSaldos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuSaldosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuSaldos);
-
         jMenuBar1.add(MenuFinanceiro);
 
         MenuHistorico.setText("Histórico");
@@ -304,9 +292,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(58, 58, 58)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Botao_Listar, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Botao_Sair, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGap(24, 24, 24)
+                        .addComponent(Botao_Sair)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -335,8 +322,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Text_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(Botao_Listar))
+                            .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Botao_Cadastrar)
@@ -348,14 +334,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void Botao_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ListarActionPerformed
-        try {
-            Consultar();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_Botao_ListarActionPerformed
 
     private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
 
@@ -391,12 +369,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuVendasActionPerformed
 
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-        Saldos c = new Saldos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);
@@ -419,6 +391,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         p.setCnpj(Text_CPF.getText());
 
         p.cadastrar(conn);
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
 
     private void Tabela_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_FornecedorMouseClicked
@@ -442,6 +419,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         p.setCnpj(Text_CPF.getText());
 
         p.Alterar(conn);
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
@@ -450,7 +432,20 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         p.setId(Integer.parseInt(Text_id.getText()));
 
         p.Deletar(conn);
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -491,7 +486,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JButton Botao_Alterar;
     private javax.swing.JButton Botao_Cadastrar;
     private javax.swing.JButton Botao_Excluir;
-    private javax.swing.JButton Botao_Listar;
     private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
@@ -501,7 +495,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JMenu MenuHistorico;
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuSaldos;
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Fornecedor;
     private javax.swing.JTextField Text_CPF;
