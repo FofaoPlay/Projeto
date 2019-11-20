@@ -144,6 +144,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         jLabel4.setText("CPF/CNPJ:");
 
         Botao_Alterar.setText("Alterar");
+        Botao_Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_AlterarActionPerformed(evt);
+            }
+        });
 
         Tabela_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -172,6 +177,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Tabela_Clientes);
 
         Botao_Excluir.setText("Excluir");
+        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ExcluirActionPerformed(evt);
+            }
+        });
 
         Botao_Listar.setText("Atualizar");
         Botao_Listar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -343,13 +353,14 @@ public class CadastroClientes extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Text_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Botao_Listar)
                                 .addGap(18, 18, 18)
-                                .addComponent(Botao_Sair))))))
+                                .addComponent(Botao_Sair))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Text_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
 
         pack();
@@ -435,11 +446,32 @@ public class CadastroClientes extends javax.swing.JFrame {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Clientes.getModel();
 
         Text_id.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
-        Text_Nome.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
-        Text_Telefone.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
-        Text_Email.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
-        Text_CPF.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
+        Text_Nome.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 1));
+        Text_Telefone.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 2));
+        Text_Email.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 3));
+        Text_CPF.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 4));
     }//GEN-LAST:event_Tabela_ClientesMouseClicked
+
+    private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Clientes p = new Clientes();
+
+        p.setId(Integer.parseInt(Text_id.getText()));
+        p.setNome(Text_Nome.getText());
+        p.setTelefone(Text_Telefone.getText());
+        p.setEmail(Text_Email.getText());
+        p.setCpfcnpj(Text_CPF.getText());
+
+        p.Alterar(conn);
+    }//GEN-LAST:event_Botao_AlterarActionPerformed
+
+    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Clientes p = new Clientes();
+        p.setId(Integer.parseInt(Text_id.getText()));
+
+        p.Alterar(conn);
+    }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     /**
      * @param args the command line arguments

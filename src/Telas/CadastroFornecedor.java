@@ -115,6 +115,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Botao_Excluir.setText("Excluir");
+        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ExcluirActionPerformed(evt);
+            }
+        });
 
         Botao_Listar.setText("Atualizar");
         Botao_Listar.addActionListener(new java.awt.event.ActionListener() {
@@ -420,15 +425,32 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Fornecedor.getModel();
 
         Text_id.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
-        Text_Nome.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
-        Text_Telefone.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
-        Text_Email.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
-        Text_CPF.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+        Text_Nome.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 1));
+        Text_Telefone.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 2));
+        Text_Email.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 3));
+        Text_CPF.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 4));
     }//GEN-LAST:event_Tabela_FornecedorMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
-        // TODO add your handling code here:
+        Connection conn = new Conexao().getConnection();
+        Fornecedores p = new Fornecedores();
+
+        p.setId(Integer.parseInt(Text_id.getText()));
+        p.setNome(Text_Nome.getText());
+        p.setTelefone(Text_Telefone.getText());
+        p.setEmail(Text_Email.getText());
+        p.setCnpj(Text_CPF.getText());
+
+        p.Alterar(conn);
     }//GEN-LAST:event_Botao_AlterarActionPerformed
+
+    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Fornecedores p = new Fornecedores();
+        p.setId(Integer.parseInt(Text_id.getText()));
+
+        p.Alterar(conn);
+    }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     /**
      * @param args the command line arguments

@@ -70,7 +70,36 @@ public class Fornecedores {
             System.out.println("Erro de Banco de dados");
     }
     }
-    
-    
+    public void Alterar(Connection conn){
+        String sqlUpdate = "UPDATE Fornecedores SET Nome=?, Telefone=?, Email=?, Cnpj=? WHERE Codigo="+id;
+        
+        PreparedStatement stm = null;
+        try{
+            stm = conn.prepareStatement(sqlUpdate);
+            
+            
+            stm.setString(1, getNome());
+            stm.setString(2, getTelefone());
+            stm.setString(3, getEmail());
+            stm.setString(4, getCnpj());
+            
+            stm.execute();
+        }
+        catch (SQLException u) {
+            System.out.println("Erro de Banco de dados");
+    }
+    }
+    public void Deletar(Connection conn){
+        String sqlDelete = "DELETE * FROM Fornecedores WHERE Codigo="+id;
+        
+        PreparedStatement stm = null;
+        try{
+            stm = conn.prepareStatement(sqlDelete);
+            stm.execute();
+        }
+        catch (SQLException u) {
+            System.out.println("Erro de Banco de dados");
+    }
+    }
     
 }

@@ -20,7 +20,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Fofao
  */
 public class CadastroProdutos2 extends javax.swing.JFrame {
-public void Consultar() throws SQLException {
+
+    public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos.getModel();
         grid0.setNumRows(0);
         Connection conn = null;
@@ -65,6 +66,7 @@ public void Consultar() throws SQLException {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Creates new form CadastroProdutos
      */
@@ -178,6 +180,11 @@ public void Consultar() throws SQLException {
         });
 
         Botao_Excluir.setText("Excluir");
+        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ExcluirActionPerformed(evt);
+            }
+        });
 
         Botao_Listar.setText("Atualizar");
         Botao_Listar.addActionListener(new java.awt.event.ActionListener() {
@@ -423,7 +430,16 @@ public void Consultar() throws SQLException {
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Produtos p = new Produtos();
 
+        p.setId(Integer.parseInt(Text_id.getText()));
+        p.setNome(Text_Nome.getText());
+        p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+        p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+        p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+
+        p.Alterar(conn);
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     private void Botao_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ListarActionPerformed
@@ -438,11 +454,19 @@ public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos.getModel();
 
         Text_id.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 0));
-        Text_Nome.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 0));
-        Text_Venda.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 0));
-        Text_Compra.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 0));
-        Text_Quant.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 0));
+        Text_Nome.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 1));
+        Text_Venda.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 2));
+        Text_Compra.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 3));
+        Text_Quant.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 4));
     }//GEN-LAST:event_Tabela_ProdutosMouseClicked
+
+    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Produtos p = new Produtos();
+        p.setId(Integer.parseInt(Text_id.getText()));
+
+        p.Alterar(conn);
+    }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     /**
      * @param args the command line arguments

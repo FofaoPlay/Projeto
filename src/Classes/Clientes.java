@@ -75,11 +75,11 @@ public class Clientes {
     }
     
     public void Alterar(Connection conn){
-        String sqlInsert = "INSERT INTO clientes(Nome, Telefone, Email, Cpf_Cnpj) VALUES (?, ?, ?, ?)";
+        String sqlUpdate = "UPDATE Clientes SET Nome=?, Telefone=?, Email=?, Cpf_Cnpj=? WHERE Codigo="+id;
         
         PreparedStatement stm = null;
         try{
-            stm = conn.prepareStatement(sqlInsert);
+            stm = conn.prepareStatement(sqlUpdate);
             
             
             stm.setString(1, getNome());
@@ -93,5 +93,16 @@ public class Clientes {
             System.out.println("Erro de Banco de dados");
     }
     }
-    
+    public void Deletar(Connection conn){
+        String sqlDelete = "DELETE FROM Clientes WHERE Codigo="+id;
+        
+        PreparedStatement stm = null;
+        try{
+            stm = conn.prepareStatement(sqlDelete);
+            stm.execute();
+        }
+        catch (SQLException u) {
+            System.out.println("Erro de Banco de dados");
+    }
+    }
 }
