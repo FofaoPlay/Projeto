@@ -339,8 +339,7 @@ public class CadastroClientes extends javax.swing.JFrame {
                                 .addComponent(Botao_Sair))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Text_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                                .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
 
         pack();
@@ -380,12 +379,6 @@ public class CadastroClientes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuVendasActionPerformed
 
-<<<<<<< Updated upstream
-=======
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
->>>>>>> Stashed changes
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);

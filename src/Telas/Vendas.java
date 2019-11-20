@@ -28,7 +28,7 @@ public class Vendas extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        Tabela_Produtos_Vendas = new javax.swing.JTable();
+        Tabela_Produtos_Consulta = new javax.swing.JTable();
         Botao_Confirma = new javax.swing.JButton();
         Text_Quantidade = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -50,7 +50,7 @@ public class Vendas extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Tabela_Produtos_Vendas.setModel(new javax.swing.table.DefaultTableModel(
+        Tabela_Produtos_Consulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -70,7 +70,7 @@ public class Vendas extends javax.swing.JFrame {
                 "Código", "Nome", "Preço de Venda", "Preço de Compra", "Quantidade"
             }
         ));
-        jScrollPane1.setViewportView(Tabela_Produtos_Vendas);
+        jScrollPane1.setViewportView(Tabela_Produtos_Consulta);
 
         Botao_Confirma.setText("Confirmar");
 
@@ -169,7 +169,7 @@ public class Vendas extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Text_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Text_Cliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,21 +192,14 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(Botao_Sair)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addComponent(Text_Cliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Text_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-<<<<<<< Updated upstream
                             .addComponent(jLabel3))))
-=======
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Text_Cliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)))))
->>>>>>> Stashed changes
                 .addGap(18, 18, 18)
                 .addComponent(Botao_Confirma)
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -249,12 +242,6 @@ public class Vendas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuVendasActionPerformed
 
-<<<<<<< Updated upstream
-=======
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
->>>>>>> Stashed changes
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);
@@ -315,7 +302,7 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuHistoricogeral;
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuVendas;
-    private javax.swing.JTable Tabela_Produtos_Vendas;
+    private javax.swing.JTable Tabela_Produtos_Consulta;
     private javax.swing.JTextField Text_Cliente;
     private javax.swing.JTextField Text_Cliente2;
     private javax.swing.JTextField Text_Quantidade;

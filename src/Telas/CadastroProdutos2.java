@@ -373,24 +373,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
 
-<<<<<<< Updated upstream
-=======
-    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
-        Pedidos c = new Pedidos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuPedidosActionPerformed
-
-    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
-        Vendas c = new Vendas();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuVendasActionPerformed
-
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
->>>>>>> Stashed changes
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);

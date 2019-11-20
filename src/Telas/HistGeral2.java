@@ -33,6 +33,7 @@ public class HistGeral2 extends javax.swing.JFrame {
         Pesquisa = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         Botao_Buscar = new javax.swing.JButton();
+        Botao_Quitar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -77,10 +78,12 @@ public class HistGeral2 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(Tabela_Conta);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Pesquisar Parceiro:");
 
         Botao_Buscar.setText("Buscar");
+
+        Botao_Quitar.setText("Quitar");
 
         MenuCadastros.setText("Cadastros");
 
@@ -157,7 +160,8 @@ public class HistGeral2 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Botao_Quitar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Botao_Sair))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -179,8 +183,10 @@ public class HistGeral2 extends javax.swing.JFrame {
                     .addComponent(Botao_Buscar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(Botao_Sair)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Botao_Sair)
+                    .addComponent(Botao_Quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -221,12 +227,6 @@ public class HistGeral2 extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuVendasActionPerformed
 
-<<<<<<< Updated upstream
-=======
-    private void MenuSaldosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSaldosActionPerformed
-    }//GEN-LAST:event_MenuSaldosActionPerformed
-
->>>>>>> Stashed changes
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
         HistGeral2 c = new HistGeral2();
         c.setVisible(true);
@@ -283,6 +283,7 @@ public class HistGeral2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Buscar;
+    private javax.swing.JButton Botao_Quitar;
     private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
