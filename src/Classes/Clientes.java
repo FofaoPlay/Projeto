@@ -6,17 +6,17 @@ import java.sql.SQLException;
 
 
 public class Clientes {
-    public int id;
+    public String id;
     public String nome;
     public String telefone;
     public String email;
     public String cpfcnpj;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -74,8 +74,8 @@ public class Clientes {
         
     }
     
-    public void Alterar(Connection conn){
-        String sqlInsert = "INSERT INTO clientes(Nome, Telefone, Email, Cpf_Cnpj) VALUES (?, ?, ?, ?)";
+    public void alterar(Connection conn){
+        String sqlInsert = "UPDATE clientes SET Nome=?, Telefone=?, Email=?, Cpf_Cnpj=? WHERE Codigo="+id;
         
         PreparedStatement stm = null;
         try{

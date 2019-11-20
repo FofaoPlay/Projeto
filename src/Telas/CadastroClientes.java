@@ -144,6 +144,11 @@ public class CadastroClientes extends javax.swing.JFrame {
         jLabel4.setText("CPF/CNPJ:");
 
         Botao_Alterar.setText("Alterar");
+        Botao_Alterar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Botao_AlterarMouseClicked(evt);
+            }
+        });
 
         Tabela_Clientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -343,13 +348,15 @@ public class CadastroClientes extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Text_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Botao_Listar)
                                 .addGap(18, 18, 18)
-                                .addComponent(Botao_Sair))))))
+                                .addComponent(Botao_Sair))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Text_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -432,14 +439,26 @@ public class CadastroClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_ListarMouseClicked
 
     private void Tabela_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ClientesMouseClicked
-        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Clientes.getModel();
-
+        
+        
         Text_id.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
         Text_Nome.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
         Text_Telefone.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
         Text_Email.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
         Text_CPF.setText((String) Tabela_Clientes.getValueAt(Tabela_Clientes.getSelectedRow(), 0));
     }//GEN-LAST:event_Tabela_ClientesMouseClicked
+
+    private void Botao_AlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_AlterarMouseClicked
+        Connection conn = new Conexao().getConnection();
+        Clientes p = new Clientes();
+
+        p.setNome(Text_Nome.getText());
+        p.setTelefone(Text_Telefone.getText());
+        p.setEmail(Text_Email.getText());
+        p.setCpfcnpj(Text_CPF.getText());
+
+        p.alterar(conn);
+    }//GEN-LAST:event_Botao_AlterarMouseClicked
 
     /**
      * @param args the command line arguments
