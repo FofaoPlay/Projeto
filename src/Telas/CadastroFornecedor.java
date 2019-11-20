@@ -5,11 +5,67 @@
  */
 package Telas;
 
+import Classes.Fornecedores;
+import Conec.Conexao;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fofao
  */
 public class CadastroFornecedor extends javax.swing.JFrame {
+
+    public void Consultar() throws SQLException {
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Fornecedor.getModel();
+        grid0.setNumRows(0);
+        Connection conn = null;
+        Conexao bd = new Conexao();
+        conn = bd.getConnection();
+        Statement stm = null;
+        ResultSet rs = null;
+        String SQLConsulta = "SELECT * FROM Fornecedores";
+        try {
+            stm = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = stm.executeQuery(SQLConsulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            while (rs.next()) {
+                String recebe_id = rs.getString("Codigo");
+                String recebe_nome = rs.getString("Nome");
+                String recebe_telefone = rs.getString("Telefone");
+                String recebe_email = rs.getString("Email");
+                String recebe_cpf = rs.getString("Cnpj");
+
+                DefaultTableModel grid = (DefaultTableModel) Tabela_Fornecedor.getModel();
+                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email, recebe_cpf});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Creates new form CadastroFornecedor
@@ -42,6 +98,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         Botao_Alterar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Fornecedor = new javax.swing.JTable();
+        Text_id = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -85,10 +143,20 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         });
 
         Botao_Cadastrar.setText("Cadastrar");
+        Botao_Cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_CadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("CNPJ:");
 
         Botao_Alterar.setText("Alterar");
+        Botao_Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_AlterarActionPerformed(evt);
+            }
+        });
 
         Tabela_Fornecedor.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,7 +177,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 "Código", "Nome", "Telefone", "Email", "CNPJ"
             }
         ));
+        Tabela_Fornecedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabela_FornecedorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabela_Fornecedor);
+
+        jLabel5.setText("Código:");
 
         MenuCadastros.setText("Cadastros");
 
@@ -197,6 +272,17 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(Botao_Cadastrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Botao_Alterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Botao_Excluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 484, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
@@ -211,14 +297,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
-                                    .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Botao_Cadastrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Botao_Alterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Botao_Excluir)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                                    .addComponent(Text_CPF, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(58, 58, 58)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Botao_Listar, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Botao_Sair, javax.swing.GroupLayout.Alignment.TRAILING))))
@@ -232,11 +312,14 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Text_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Text_Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(26, 26, 26))
@@ -262,7 +345,11 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Botao_ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ListarActionPerformed
-        // TODO add your handling code here:
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Botao_ListarActionPerformed
 
     private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
@@ -316,6 +403,32 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
+
+    private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
+        Connection conn = new Conexao().getConnection();
+        Fornecedores p = new Fornecedores();
+
+        p.setNome(Text_Nome.getText());
+        p.setTelefone(Text_Telefone.getText());
+        p.setEmail(Text_Email.getText());
+        p.setCnpj(Text_CPF.getText());
+
+        p.cadastrar(conn);
+    }//GEN-LAST:event_Botao_CadastrarActionPerformed
+
+    private void Tabela_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_FornecedorMouseClicked
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Fornecedor.getModel();
+
+        Text_id.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+        Text_Nome.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+        Text_Telefone.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+        Text_Email.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+        Text_CPF.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+    }//GEN-LAST:event_Tabela_FornecedorMouseClicked
+
+    private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,10 +486,12 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JTextField Text_Email;
     private javax.swing.JTextField Text_Nome;
     private javax.swing.JFormattedTextField Text_Telefone;
+    private javax.swing.JLabel Text_id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
