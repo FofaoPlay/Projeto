@@ -27,12 +27,6 @@ public class Pedidos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        Botao_Sair = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Tabela_Produtos_Consulta = new javax.swing.JTable();
-        Botao_Confirma = new javax.swing.JButton();
-        Text_Quantidade = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -46,39 +40,6 @@ public class Pedidos extends javax.swing.JFrame {
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Quantidade vendida:");
-
-        Botao_Sair.setText("Sair");
-        Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Botao_SairMouseClicked(evt);
-            }
-        });
-
-        Tabela_Produtos_Consulta.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Código", "Nome", "Preço de Venda", "Preço de Compra", "Quantidade"
-            }
-        ));
-        jScrollPane1.setViewportView(Tabela_Produtos_Consulta);
-
-        Botao_Confirma.setText("Confirmar");
 
         MenuCadastros.setText("Cadastros");
 
@@ -159,34 +120,11 @@ public class Pedidos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Botao_Confirma)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Botao_Sair))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Botao_Confirma)
-                    .addComponent(jLabel1)
-                    .addComponent(Botao_Sair))
-                .addContainerGap(55, Short.MAX_VALUE))
+            .addGap(0, 379, Short.MAX_VALUE)
         );
 
         pack();
@@ -238,12 +176,6 @@ public class Pedidos extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
 
-    private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
-        Menu m = new Menu();
-        m.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_Botao_SairMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -280,8 +212,6 @@ public class Pedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Botao_Confirma;
-    private javax.swing.JButton Botao_Sair;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
     private javax.swing.JMenuItem MenuCadastroProdutos;
@@ -292,10 +222,6 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuSaldos;
     private javax.swing.JMenuItem MenuVendas;
-    private javax.swing.JTable Tabela_Produtos_Consulta;
-    private javax.swing.JTextField Text_Quantidade;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
