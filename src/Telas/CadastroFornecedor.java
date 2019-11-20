@@ -449,7 +449,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         Fornecedores p = new Fornecedores();
         p.setId(Integer.parseInt(Text_id.getText()));
 
-        p.Alterar(conn);
+        p.Deletar(conn);
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     /**

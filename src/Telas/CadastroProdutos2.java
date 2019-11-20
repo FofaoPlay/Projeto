@@ -465,7 +465,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         Produtos p = new Produtos();
         p.setId(Integer.parseInt(Text_id.getText()));
 
-        p.Alterar(conn);
+        p.Deletar(conn);
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     /**

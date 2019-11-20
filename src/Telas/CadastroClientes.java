@@ -470,7 +470,7 @@ public class CadastroClientes extends javax.swing.JFrame {
         Clientes p = new Clientes();
         p.setId(Integer.parseInt(Text_id.getText()));
 
-        p.Alterar(conn);
+        p.Deletar(conn);
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     /**

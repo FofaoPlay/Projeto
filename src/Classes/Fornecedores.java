@@ -90,7 +90,7 @@ public class Fornecedores {
     }
     }
     public void Deletar(Connection conn){
-        String sqlDelete = "DELETE * FROM Fornecedores WHERE Codigo="+id;
+        String sqlDelete = "DELETE FROM Fornecedores WHERE Codigo="+id;
         
         PreparedStatement stm = null;
         try{

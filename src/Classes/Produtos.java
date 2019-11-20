@@ -91,7 +91,7 @@ public class Produtos {
     }
     }
     public void Deletar(Connection conn){
-        String sqlDelete = "DELETE * FROM Produtos WHERE Codigo="+id;
+        String sqlDelete = "DELETE FROM Produtos WHERE Codigo="+id;
         
         PreparedStatement stm = null;
         try{
