@@ -339,8 +339,8 @@ String Codigo, Produto, ValorUnit, Quantidade;
         
         p.setTipo("Saída");
         p.setStatus("Não Quitado");
-        p.setDate();
-            stm.setDate(7, getVencimento());
+        //p.setDate();
+     //       stm.setDate(7, getVencimento());
 
         /*stm.setString(1, getParceiro());
             stm.setString(2, getProduto());
