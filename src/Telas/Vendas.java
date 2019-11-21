@@ -1,15 +1,66 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Telas;
 
-/**
- *
- * @author Fofao
- */
+import Classes.Financeiro;
+import Conec.Conexao;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 public class Vendas extends javax.swing.JFrame {
+String Codigo, Produto, ValorUnit, Quantidade;
+
+    public void Consultar() throws SQLException {
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
+        grid0.setNumRows(0);
+        Connection conn = null;
+        Conexao bd = new Conexao();
+        conn = bd.getConnection();
+        Statement stm = null;
+        ResultSet rs = null;
+        String SQLConsulta = "SELECT * FROM Contas";
+        try {
+            stm = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = stm.executeQuery(SQLConsulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            while (rs.next()) {
+                String recebe_id = rs.getString("Codigo");
+                String recebe_nome = rs.getString("Nome");
+                String recebe_telefone = rs.getString("Telefone");
+                String recebe_email = rs.getString("Email");
+                String recebe_cpf = rs.getString("Cpf_Cnpj");
+
+                DefaultTableModel grid = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
+                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email, recebe_cpf});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Creates new form Produtos
@@ -36,7 +87,7 @@ public class Vendas extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Text_Cliente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        Text_Cliente2 = new javax.swing.JTextField();
+        Text_Parcelas = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -52,27 +103,37 @@ public class Vendas extends javax.swing.JFrame {
 
         Tabela_Produtos_Consulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Preço de Venda", "Preço de Compra", "Quantidade"
+                "Código", "Nome", "Preço de Venda", "Quantidade"
             }
         ));
+        Tabela_Produtos_Consulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Tabela_Produtos_ConsultaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Tabela_Produtos_Consulta);
 
         Botao_Confirma.setText("Confirmar");
+        Botao_Confirma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ConfirmaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Quantidade vendida:");
 
@@ -172,7 +233,7 @@ public class Vendas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text_Cliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Botao_Sair))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
@@ -192,7 +253,7 @@ public class Vendas extends javax.swing.JFrame {
                     .addComponent(Botao_Sair)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Text_Cliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Text_Quantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,6 +315,59 @@ public class Vendas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
 
+    private void Botao_ConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ConfirmaActionPerformed
+        Date hoje = new Date();
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c = Calendar.getInstance();
+        
+        int Parcelas = Integer.parseInt(Text_Parcelas.getText());
+        
+        Connection conn = new Conexao().getConnection();
+        Financeiro p = new Financeiro();
+
+        p.setParceiro(Text_Cliente.getText());
+        p.setProduto(Produto);
+        Double ValorUni=(Double.parseDouble(ValorUnit));
+        p.setQuantidade(Integer.parseInt(Text_Quantidade.getText()));
+        
+        Double Quantidade_=(Double.parseDouble(Text_Quantidade.getText()));
+        p.setValorunit(ValorUni);
+        p.setTotal((Quantidade_*ValorUni)/Parcelas);
+        
+        
+        
+        p.setTipo("Saída");
+        p.setStatus("Não Quitado");
+            stm.setDate(6, getDatacompra());
+            stm.setDate(7, getVencimento());
+
+        /*stm.setString(1, getParceiro());
+            stm.setString(2, getProduto());
+            stm.setDouble(3, getValorunit());
+            stm.setInt(4, getQuantidade());
+            stm.setDouble(5, getTotal());
+            stm.setDate(6, getDatacompra());
+            stm.setDate(7, getVencimento());
+            stm.setString(8, getTipo());
+            stm.setString(9, getStatus());*/
+        p.cadastrar(conn);
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Botao_ConfirmaActionPerformed
+
+    private void Tabela_Produtos_ConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_Produtos_ConsultaMouseClicked
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
+
+        Codigo = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 0));
+        Produto=((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
+        ValorUnit=((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
+        Quantidade=((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
+        
+    }//GEN-LAST:event_Tabela_Produtos_ConsultaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -304,7 +418,7 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Produtos_Consulta;
     private javax.swing.JTextField Text_Cliente;
-    private javax.swing.JTextField Text_Cliente2;
+    private javax.swing.JTextField Text_Parcelas;
     private javax.swing.JTextField Text_Quantidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
