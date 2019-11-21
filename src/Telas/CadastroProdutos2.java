@@ -398,7 +398,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         try {
             Consultar();
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 

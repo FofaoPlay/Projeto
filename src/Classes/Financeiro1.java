@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Financeiro {
+public class Financeiro1 {
 
     public int id;
     public String parceiro;
