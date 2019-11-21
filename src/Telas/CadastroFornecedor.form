@@ -166,10 +166,12 @@
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Text_Nome" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Text_Telefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="Text_id" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Text_Nome" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="Text_Telefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -188,7 +190,6 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Botao_Cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Botao_Alterar" alignment="3" min="-2" max="-2" attributes="0"/>

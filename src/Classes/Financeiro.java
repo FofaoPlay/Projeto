@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Financeiro {
+
     public int id;
     public String parceiro;
     public String produto;
@@ -17,16 +18,14 @@ public class Financeiro {
     public String tipo;
     public String status;
 
-    public Financeiro(double valorunit, int quantidade, double total, Date datacompra, Date vencimento) {
+    /*public Financeiro(double valorunit, int quantidade, double total, Date datacompra, Date vencimento) {
         this.valorunit = valorunit;
         this.quantidade = quantidade;
         this.total = total;
         this.datacompra = datacompra;
         this.vencimento = vencimento;
-    }
+    }*/
 
-    
-    
     public int getId() {
         return id;
     }
@@ -106,15 +105,14 @@ public class Financeiro {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    public void cadastrar(Connection conn){
+
+    public void cadastrar(Connection conn) {
         String sqlInsert = "INSERT INTO contas(Parceiro, Produto, ValorUnit, Quantidade, Total, DataCompra, Vencimento, Tipo, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
+
         PreparedStatement stm = null;
-        try{
+        try {
             stm = conn.prepareStatement(sqlInsert);
-            
-            
+
             stm.setString(1, getParceiro());
             stm.setString(2, getProduto());
             stm.setDouble(3, getValorunit());
@@ -124,12 +122,12 @@ public class Financeiro {
             stm.setDate(7, getVencimento());
             stm.setString(8, getTipo());
             stm.setString(9, getStatus());
-            
+
             stm.execute();
-        }
-        catch (SQLException u) {
+        } catch (SQLException u) {
             System.out.println("Erro de Banco de dados");
+        }
+        
     }
-    }
-    
+
 }
