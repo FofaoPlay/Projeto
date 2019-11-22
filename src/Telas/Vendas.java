@@ -6,15 +6,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 public class Vendas extends javax.swing.JFrame {
-String Codigo, Produto, ValorUnit, Quantidade;
+
+    String Codigo, Produto, ValorUnit, Quantidade;
 
     public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
@@ -24,7 +22,7 @@ String Codigo, Produto, ValorUnit, Quantidade;
         conn = bd.getConnection();
         Statement stm = null;
         ResultSet rs = null;
-        String SQLConsulta = "SELECT * FROM Contas";
+        String SQLConsulta = "SELECT Codigo, Nome, PrecoVenda, Quantidade FROM Produtos";
         try {
             stm = conn.createStatement();
         } catch (SQLException ex) {
@@ -39,12 +37,11 @@ String Codigo, Produto, ValorUnit, Quantidade;
             while (rs.next()) {
                 String recebe_id = rs.getString("Codigo");
                 String recebe_nome = rs.getString("Nome");
-                String recebe_telefone = rs.getString("Telefone");
-                String recebe_email = rs.getString("Email");
-                String recebe_cpf = rs.getString("Cpf_Cnpj");
+                String recebe_telefone = rs.getString("PrecoVenda");
+                String recebe_email = rs.getString("Quantidade");
 
                 DefaultTableModel grid = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
-                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email, recebe_cpf});
+                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email});
             }
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,6 +97,11 @@ String Codigo, Produto, ValorUnit, Quantidade;
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         Tabela_Produtos_Consulta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -316,41 +318,22 @@ String Codigo, Produto, ValorUnit, Quantidade;
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_ConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ConfirmaActionPerformed
-        Date hoje = new Date();
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar c = Calendar.getInstance();
-        
-        int Parcelas = Integer.parseInt(Text_Parcelas.getText());
-        
         Connection conn = new Conexao().getConnection();
         Financeiro p = new Financeiro();
 
         p.setParceiro(Text_Cliente.getText());
         p.setProduto(Produto);
-        Double ValorUni=(Double.parseDouble(ValorUnit));
+        Double ValorUni = (Double.parseDouble(ValorUnit));
         p.setQuantidade(Integer.parseInt(Text_Quantidade.getText()));
-        
-        Double Quantidade_=(Double.parseDouble(Text_Quantidade.getText()));
+        int Parcelas = Integer.parseInt(Text_Parcelas.getText());
+        p.setParcelas(Parcelas);
+        Double Quantidade_ = (Double.parseDouble(Text_Quantidade.getText()));
         p.setValorunit(ValorUni);
-        p.setTotal((Quantidade_*ValorUni)/Parcelas);
-        
-        
-        
-        
+        p.setTotal((Quantidade_ * ValorUni) / Parcelas);
+
         p.setTipo("Saída");
         p.setStatus("Não Quitado");
-        //p.setDate();
-     //       stm.setDate(7, getVencimento());
 
-        /*stm.setString(1, getParceiro());
-            stm.setString(2, getProduto());
-            stm.setDouble(3, getValorunit());
-            stm.setInt(4, getQuantidade());
-            stm.setDouble(5, getTotal());
-            stm.setDate(6, getDatacompra());
-            stm.setDate(7, getVencimento());
-            stm.setString(8, getTipo());
-            stm.setString(9, getStatus());*/
         p.cadastrar(conn);
         try {
             Consultar();
@@ -363,11 +346,18 @@ String Codigo, Produto, ValorUnit, Quantidade;
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
 
         Codigo = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 0));
-        Produto=((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
-        ValorUnit=((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
-        Quantidade=((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
-        
+        Produto = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
+        ValorUnit = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
+        Quantidade = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
     }//GEN-LAST:event_Tabela_Produtos_ConsultaMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
