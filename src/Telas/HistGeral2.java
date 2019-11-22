@@ -5,11 +5,73 @@
  */
 package Telas;
 
+import Classes.Financeiro;
+import Conec.Conexao;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Fofao
  */
 public class HistGeral2 extends javax.swing.JFrame {
+
+    public void Consultar() throws SQLException {
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Conta.getModel();
+        grid0.setNumRows(0);
+        Connection conn = null;
+        Conexao bd = new Conexao();
+        conn = bd.getConnection();
+        Statement stm = null;
+        ResultSet rs = null;
+        String SQLConsulta = "SELECT Codigo, Parceiro, Produto, ValorUnit, Quantidade, Total, DataCompra, Vencimento,Tipo, Status FROM Contas";
+        try {
+            stm = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = stm.executeQuery(SQLConsulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            while (rs.next()) {
+                String recebe_id = rs.getString("Codigo");
+                String recebe_parceiro = rs.getString("Parceiro");
+                String recebe_produto = rs.getString("Produto");
+                String recebe_valorunit = rs.getString("ValorUnit");
+                String recebe_quantidade = rs.getString("Quantidade");
+                String recebe_total = rs.getString("Total");
+                String recebe_datacompra = rs.getString("DataCompra");
+                String recebe_vencimento = rs.getString("Vencimento");
+                String recebe_tipo = rs.getString("Tipo");
+                String recebe_status = rs.getString("Status");
+
+                DefaultTableModel grid = (DefaultTableModel) Tabela_Conta.getModel();
+                grid0.addRow(new String[]{recebe_id, recebe_parceiro, recebe_produto, recebe_valorunit, recebe_quantidade, recebe_total, recebe_datacompra, recebe_vencimento, recebe_tipo, recebe_status});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Creates new form Contas
@@ -46,6 +108,11 @@ public class HistGeral2 extends javax.swing.JFrame {
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         Botao_Sair.setText("Sair");
         Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,6 +151,11 @@ public class HistGeral2 extends javax.swing.JFrame {
         Botao_Buscar.setText("Buscar");
 
         Botao_Quitar.setText("Quitar");
+        Botao_Quitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_QuitarActionPerformed(evt);
+            }
+        });
 
         MenuCadastros.setText("Cadastros");
 
@@ -238,6 +310,43 @@ public class HistGeral2 extends javax.swing.JFrame {
         m.setVisible(true);
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
+
+    private void Botao_QuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_QuitarActionPerformed
+        try {
+            Connection conn = new Conexao().getConnection();
+
+            DefaultTableModel grid0 = (DefaultTableModel) Tabela_Conta.getModel();
+
+            String Codigo = ((String) Tabela_Conta.getValueAt(Tabela_Conta.getSelectedRow(), 0));
+            String Status = ((String) Tabela_Conta.getValueAt(Tabela_Conta.getSelectedRow(), 9));
+            
+            Financeiro p = new Financeiro();
+            p.setStatus("Quitado");
+            p.setId(Integer.parseInt(Codigo));
+            try {
+                p.Altera_Status(conn);
+            } catch (SQLException ex) {
+                Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                Consultar();
+            } catch (SQLException ex) {
+                Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (java.lang.NullPointerException ex) {
+                Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Botao_QuitarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        try {
+            Consultar();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments

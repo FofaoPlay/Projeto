@@ -80,6 +80,19 @@ public class Financeiro {
             System.out.println("Erro de update no Banco de dados");
         }
     }
+    public void Altera_Status(Connection conn) throws SQLException {
+        String sqlUpdate = "UPDATE Contas SET Status=? WHERE Codigo=" + id;
+        
+        PreparedStatement stm = null;
+        try {
+            stm = conn.prepareStatement(sqlUpdate);
+            
+            stm.setString(1, getStatus());
+            stm.execute();
+        } catch (SQLException u) {
+            System.out.println("Erro de update no Banco de dados");
+        }
+    }
 
     /**
      * @return the id

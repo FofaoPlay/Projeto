@@ -13,8 +13,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class Vendas extends javax.swing.JFrame {
 
-    String Codigo, Produto, ValorUnit, Quantidade;
-
     public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
         grid0.setNumRows(0);
@@ -86,7 +84,6 @@ public class Vendas extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Text_Quantidade = new javax.swing.JFormattedTextField();
         Text_Parcelas = new javax.swing.JFormattedTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -125,11 +122,6 @@ public class Vendas extends javax.swing.JFrame {
                 "Código", "Nome", "Preço de Venda", "Quantidade"
             }
         ));
-        Tabela_Produtos_Consulta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Tabela_Produtos_ConsultaMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(Tabela_Produtos_Consulta);
 
         Botao_Confirma.setText("Confirmar");
@@ -155,8 +147,6 @@ public class Vendas extends javax.swing.JFrame {
         Text_Quantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
         Text_Parcelas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         MenuCadastros.setText("Cadastros");
 
@@ -244,8 +234,6 @@ public class Vendas extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Botao_Sair))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE))
@@ -267,8 +255,7 @@ public class Vendas extends javax.swing.JFrame {
                             .addComponent(Botao_Sair)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
-                                .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(Text_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3)))
@@ -332,64 +319,67 @@ public class Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_ConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ConfirmaActionPerformed
-        try{
-        Connection conn = new Conexao().getConnection();
-
-        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
-
-        Codigo = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 0));
-        Produto = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
-        ValorUnit = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
-        Quantidade = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
-
-        Financeiro p = new Financeiro();
-        
-        p.setId(Integer.parseInt(Codigo));
-        p.setParceiro(Text_Cliente.getText());
-        p.setProduto(Produto);
-        Double ValorUni = (Double.parseDouble(ValorUnit));
-        p.setQuantidade(Integer.parseInt(Text_Quantidade.getText()));
-        int Parcelas = Integer.parseInt(Text_Parcelas.getText());
-        p.setParcelas(Parcelas);
-        Double Quantidade_ = (Double.parseDouble(Text_Quantidade.getText()));
-        p.setValorunit(ValorUni);
-        p.setTotal((Quantidade_ * ValorUni) / Parcelas);
-        p.setQuantidade_prod(Integer.parseInt(Quantidade));
-
-        p.setTipo("Saída");
-        p.setStatus("Não Quitado");
-        
-        if ((Integer.parseInt(Quantidade))>=(Integer.parseInt(Text_Quantidade.getText()))){
         try {
-            p.cadastrar(conn);
-        } catch (SQLException ex) {
-            Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            Consultar();
-        } catch (SQLException ex) {
-            Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (java.lang.NullPointerException ex) {
-            Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        } else {
-            JOptionPane.showMessageDialog(null, "A quantidade de estoque não é suficiente para executar a compra", "Problema", JOptionPane.ERROR_MESSAGE);
-        }
+            Connection conn = new Conexao().getConnection();
+
+            DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
+
+            String Codigo = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 0));
+            String Produto = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
+            String ValorUnit = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
+            String Quantidade = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
+
+            Financeiro p = new Financeiro();
+
+            p.setId(Integer.parseInt(Codigo));
+            p.setParceiro(Text_Cliente.getText());
+            p.setProduto(Produto);
+            Double ValorUni = (Double.parseDouble(ValorUnit));
+            p.setQuantidade(Integer.parseInt(Text_Quantidade.getText()));
+            int Parcelas = Integer.parseInt(Text_Parcelas.getText());
+            p.setParcelas(Parcelas);
+            Double Quantidade_ = (Double.parseDouble(Text_Quantidade.getText()));
+            p.setValorunit(ValorUni);
+            p.setTotal((Quantidade_ * ValorUni) / Parcelas);
+            p.setQuantidade_prod(Integer.parseInt(Quantidade));
+
+            p.setTipo("Saída");
+            p.setStatus("Não Quitado");
+            if (!"".equals(Text_Cliente.getText())) {
+                if (Double.parseDouble(Text_Quantidade.getText()) >= 1) {
+                    if (Parcelas >= 1) {
+                        if ((Integer.parseInt(Quantidade)) >= (Integer.parseInt(Text_Quantidade.getText()))) {
+                            try {
+                                p.cadastrar(conn);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            try {
+                                Consultar();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+                            } catch (java.lang.NullPointerException ex) {
+                                Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "A quantidade de estoque não é suficiente para executar a compra", "Problema", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "A quantidade de parcelas não pode ser menor que 1", "Problema", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "A quantidade de retirada não pode ser menor que 1", "Problema", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Insira um nome para o cliente", "Problema", JOptionPane.ERROR_MESSAGE);
+            }
         } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+        } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Insira valores válidos", "Problema", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_Botao_ConfirmaActionPerformed
-
-    private void Tabela_Produtos_ConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_Produtos_ConsultaMouseClicked
-        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
-
-        Codigo = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 0));
-        Produto = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
-        ValorUnit = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
-        Quantidade = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
-    }//GEN-LAST:event_Tabela_Produtos_ConsultaMouseClicked
-
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             Consultar();
@@ -450,7 +440,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JTextField Text_Cliente;
     private javax.swing.JFormattedTextField Text_Parcelas;
     private javax.swing.JFormattedTextField Text_Quantidade;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
