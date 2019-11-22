@@ -13,6 +13,7 @@ public class Financeiro {
     private String produto;
     private double valorunit;
     private int quantidade;
+    private int quantidade_prod;
     private double total;
     private String datacompra;
     private String vencimento;
@@ -27,31 +28,30 @@ public class Financeiro {
         this.datacompra = datacompra;
         this.vencimento = vencimento;
     }*/
-    public void cadastrar(Connection conn) {
+    public void cadastrar(Connection conn) throws SQLException {
         String sqlInsert = "INSERT INTO contas(Parceiro, Produto, ValorUnit, Quantidade, Total, DataCompra, Vencimento, Tipo, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stm = null;
-        
+
         java.util.Date hoje = new java.util.Date();
-        
+
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
         Calendar c = Calendar.getInstance();
-        
+
         int diah = c.get(Calendar.DAY_OF_MONTH);
         int mesh = c.get(Calendar.MONTH) + 1;
         int anoh = c.get(Calendar.YEAR);
 
         String data = diah + "/" + mesh + "/" + anoh;
-        
+
         setDatacompra(data);
-        
-        
+
         for (int count = 0; count < getParcelas(); count++) {
             c.setTime(hoje);
             c.add(Calendar.DATE, +30 * (count + 1));
             setVencimento(dataFormatada.format(c.getTime()));
 
-           try {
+            try {
                 stm = conn.prepareStatement(sqlInsert);
 
                 stm.setString(1, getParceiro());
@@ -66,8 +66,18 @@ public class Financeiro {
 
                 stm.execute();
             } catch (SQLException u) {
-                System.out.println("Erro de Banco de dados");
+                System.out.println("Erro de insert no Banco de dados");
             }
+        }
+        
+        String sqlUpdate = "UPDATE Produtos SET Quantidade=? WHERE Codigo=" + id;
+        try {
+            stm = conn.prepareStatement(sqlUpdate);
+
+            stm.setInt(1, (getQuantidade_prod()-getQuantidade()));
+            stm.execute();
+        } catch (SQLException u) {
+            System.out.println("Erro de update no Banco de dados");
         }
     }
 
@@ -223,6 +233,24 @@ public class Financeiro {
      */
     public void setParcelas(int parcelas) {
         this.parcelas = parcelas;
+    }
+
+    /**
+     * @return the quantidade_prod
+     */
+    public int getQuantidade_prod() {
+        return quantidade_prod;
+    }
+
+    /**
+     * @param quantidade_prod the quantidade_prod to set
+     */
+    public void setQuantidade_prod(int quantidade_prod) {
+        this.quantidade_prod = quantidade_prod;
+    }
+
+    public void setId(String Codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
