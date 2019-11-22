@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,41 +31,20 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         Statement stm = null;
         ResultSet rs = null;
         String SQLConsulta = "SELECT * FROM Produtos";
-        try {
-            stm = conn.createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            rs = stm.executeQuery(SQLConsulta);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            while (rs.next()) {
-                String recebe_id = rs.getString("Codigo");
-                String recebe_nome = rs.getString("Nome");
-                String recebe_precocompra = rs.getString("PrecoCompra");
-                String recebe_precovenda = rs.getString("PrecoVenda");
-                String recebe_quantidade = rs.getString("Quantidade");
+        stm = conn.createStatement();
+        rs = stm.executeQuery(SQLConsulta);
+        while (rs.next()) {
+            String recebe_id = rs.getString("Codigo");
+            String recebe_nome = rs.getString("Nome");
+            String recebe_precocompra = rs.getString("PrecoCompra");
+            String recebe_precovenda = rs.getString("PrecoVenda");
+            String recebe_quantidade = rs.getString("Quantidade");
 
-                DefaultTableModel grid = (DefaultTableModel) Tabela_Produtos.getModel();
-                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_precocompra, recebe_precovenda, recebe_quantidade});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            DefaultTableModel grid = (DefaultTableModel) Tabela_Produtos.getModel();
+            grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_precocompra, recebe_precovenda, recebe_quantidade});
         }
-
-        try {
-            rs.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            stm.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        rs.close();
+        stm.close();
     }
 
     /**
@@ -165,7 +145,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Código", "Nome", "Preço de Venda", "Preço de Compra", "Quantidade"
+                "Código", "Nome", "Preço de Compra", "Preço de Venda", "Quantidade"
             }
         ));
         Tabela_Produtos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -382,48 +362,55 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
-        Connection conn = new Conec.Conexao().getConnection();
-        Produtos p = new Produtos();
-
-        p.setNome(Text_Nome.getText());
-        p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
-        p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
-        p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
-
-        p.cadastrar(conn);
         try {
+            Connection conn = new Conec.Conexao().getConnection();
+            Produtos p = new Produtos();
+
+            p.setNome(Text_Nome.getText());
+            p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+            p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+            p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+
+            p.cadastrar(conn);
+
             Consultar();
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Compra.setText("");
+            Text_Venda.setText("");
+            Text_Quant.setText("");
+        } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Insira valores válidos", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Text_id.setText("");
-        Text_Nome.setText("");
-        Text_Compra.setText("");
-        Text_Venda.setText("");
-        Text_Quant.setText("");
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
-        Connection conn = new Conexao().getConnection();
-        Produtos p = new Produtos();
-
-        p.setId(Integer.parseInt(Text_id.getText()));
-        p.setNome(Text_Nome.getText());
-        p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
-        p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
-        p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
-
-        p.Alterar(conn);
         try {
+            Connection conn = new Conexao().getConnection();
+            Produtos p = new Produtos();
+
+            p.setId(Integer.parseInt(Text_id.getText()));
+            p.setNome(Text_Nome.getText());
+            p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+            p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+            p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+
+            p.Alterar(conn);
             Consultar();
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Compra.setText("");
+            Text_Venda.setText("");
+            Text_Quant.setText("");
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Text_id.setText("");
-        Text_Nome.setText("");
-        Text_Compra.setText("");
-        Text_Venda.setText("");
-        Text_Quant.setText("");
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     private void Tabela_ProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ProdutosMouseClicked
@@ -431,34 +418,39 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
 
         Text_id.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 0));
         Text_Nome.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 1));
-        Text_Venda.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 2));
-        Text_Compra.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 3));
+        Text_Venda.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 3));
+        Text_Compra.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 2));
         Text_Quant.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 4));
     }//GEN-LAST:event_Tabela_ProdutosMouseClicked
 
     private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
-        Connection conn = new Conexao().getConnection();
-        Produtos p = new Produtos();
-        p.setId(Integer.parseInt(Text_id.getText()));
-
-        p.Deletar(conn);
         try {
+            Connection conn = new Conexao().getConnection();
+            Produtos p = new Produtos();
+            p.setId(Integer.parseInt(Text_id.getText()));
+
+            p.Deletar(conn);
+
             Consultar();
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Compra.setText("");
+            Text_Venda.setText("");
+            Text_Quant.setText("");
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Text_id.setText("");
-        Text_Nome.setText("");
-        Text_Compra.setText("");
-        Text_Venda.setText("");
-        Text_Quant.setText("");
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             Consultar();
+
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClientes.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -488,16 +480,24 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroProdutos2.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
