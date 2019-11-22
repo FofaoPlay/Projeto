@@ -44,12 +44,12 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             while (rs.next()) {
                 String recebe_id = rs.getString("Codigo");
                 String recebe_nome = rs.getString("Nome");
-                String recebe_telefone = rs.getString("PrecoCompra");
-                String recebe_email = rs.getString("PrecoVenda");
-                String recebe_cpf = rs.getString("Quantidade");
+                String recebe_precocompra = rs.getString("PrecoCompra");
+                String recebe_precovenda = rs.getString("PrecoVenda");
+                String recebe_quantidade = rs.getString("Quantidade");
 
                 DefaultTableModel grid = (DefaultTableModel) Tabela_Produtos.getModel();
-                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email, recebe_cpf});
+                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_precocompra, recebe_precovenda, recebe_quantidade});
             }
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);

@@ -36,11 +36,11 @@ public class Vendas extends javax.swing.JFrame {
             while (rs.next()) {
                 String recebe_id = rs.getString("Codigo");
                 String recebe_nome = rs.getString("Nome");
-                String recebe_telefone = rs.getString("PrecoVenda");
-                String recebe_email = rs.getString("Quantidade");
+                String recebe_precovenda = rs.getString("PrecoVenda");
+                String recebe_quantidade = rs.getString("Quantidade");
 
                 DefaultTableModel grid = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
-                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email});
+                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_precovenda, recebe_quantidade});
             }
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);

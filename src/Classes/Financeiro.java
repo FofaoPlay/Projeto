@@ -69,24 +69,28 @@ public class Financeiro {
                 System.out.println("Erro de insert no Banco de dados");
             }
         }
-        
+
         String sqlUpdate = "UPDATE Produtos SET Quantidade=? WHERE Codigo=" + id;
         try {
             stm = conn.prepareStatement(sqlUpdate);
-
-            stm.setInt(1, (getQuantidade_prod()-getQuantidade()));
+            if ("Saída".equals(getTipo())) {
+                stm.setInt(1, (getQuantidade_prod() - getQuantidade()));
+            } else {
+                stm.setInt(1, (getQuantidade_prod() + getQuantidade()));
+            }
             stm.execute();
         } catch (SQLException u) {
             System.out.println("Erro de update no Banco de dados");
         }
     }
+
     public void Altera_Status(Connection conn) throws SQLException {
         String sqlUpdate = "UPDATE Contas SET Status=? WHERE Codigo=" + id;
-        
+
         PreparedStatement stm = null;
         try {
             stm = conn.prepareStatement(sqlUpdate);
-            
+
             stm.setString(1, getStatus());
             stm.execute();
         } catch (SQLException u) {
