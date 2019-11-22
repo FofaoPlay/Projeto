@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,41 +31,22 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         Statement stm = null;
         ResultSet rs = null;
         String SQLConsulta = "SELECT * FROM Fornecedores";
-        try {
-            stm = conn.createStatement();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            rs = stm.executeQuery(SQLConsulta);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            while (rs.next()) {
-                String recebe_id = rs.getString("Codigo");
-                String recebe_nome = rs.getString("Nome");
-                String recebe_telefone = rs.getString("Telefone");
-                String recebe_email = rs.getString("Email");
-                String recebe_cpf = rs.getString("Cnpj");
 
-                DefaultTableModel grid = (DefaultTableModel) Tabela_Fornecedor.getModel();
-                grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email, recebe_cpf});
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        stm = conn.createStatement();
+        rs = stm.executeQuery(SQLConsulta);
 
-        try {
-            rs.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        while (rs.next()) {
+            String recebe_id = rs.getString("Codigo");
+            String recebe_nome = rs.getString("Nome");
+            String recebe_telefone = rs.getString("Telefone");
+            String recebe_email = rs.getString("Email");
+            String recebe_cpf = rs.getString("Cnpj");
+
+            DefaultTableModel grid = (DefaultTableModel) Tabela_Fornecedor.getModel();
+            grid0.addRow(new String[]{recebe_id, recebe_nome, recebe_telefone, recebe_email, recebe_cpf});
         }
-        try {
-            stm.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        rs.close();
+        stm.close();
     }
 
     /**
@@ -388,25 +370,33 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
-        Connection conn = new Conexao().getConnection();
-        Fornecedores p = new Fornecedores();
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Telefone.getText()) || "".equals(Text_Email.getText()) || "".equals(Text_CPF.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Connection conn = new Conexao().getConnection();
+                Fornecedores p = new Fornecedores();
 
-        p.setNome(Text_Nome.getText());
-        p.setTelefone(Text_Telefone.getText());
-        p.setEmail(Text_Email.getText());
-        p.setCnpj(Text_CPF.getText());
+                p.setNome(Text_Nome.getText());
+                p.setTelefone(Text_Telefone.getText());
+                p.setEmail(Text_Email.getText());
+                p.setCnpj(Text_CPF.getText());
 
-        p.cadastrar(conn);
-        try {
-            Consultar();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+                p.cadastrar(conn);
+                Consultar();
+
+                Text_id.setText("");
+                Text_Nome.setText("");
+                Text_Telefone.setText("");
+                Text_Email.setText("");
+                Text_CPF.setText("");
+
+            } catch (java.lang.NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        Text_id.setText("");
-        Text_Nome.setText("");
-        Text_Telefone.setText("");
-        Text_Email.setText("");
-        Text_CPF.setText("");
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
 
     private void Tabela_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_FornecedorMouseClicked
@@ -420,51 +410,70 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     }//GEN-LAST:event_Tabela_FornecedorMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
-        Connection conn = new Conexao().getConnection();
-        Fornecedores p = new Fornecedores();
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Telefone.getText()) || "".equals(Text_Email.getText()) || "".equals(Text_CPF.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Connection conn = new Conexao().getConnection();
+                Fornecedores p = new Fornecedores();
 
-        p.setId(Integer.parseInt(Text_id.getText()));
-        p.setNome(Text_Nome.getText());
-        p.setTelefone(Text_Telefone.getText());
-        p.setEmail(Text_Email.getText());
-        p.setCnpj(Text_CPF.getText());
+                p.setId(Integer.parseInt(Text_id.getText()));
+                p.setNome(Text_Nome.getText());
+                p.setTelefone(Text_Telefone.getText());
+                p.setEmail(Text_Email.getText());
+                p.setCnpj(Text_CPF.getText());
 
-        p.Alterar(conn);
-        try {
-            Consultar();
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroFornecedor.class.getName()).log(Level.SEVERE, null, ex);
+                p.Alterar(conn);
+                Consultar();
+
+                Text_id.setText("");
+                Text_Nome.setText("");
+                Text_Telefone.setText("");
+                Text_Email.setText("");
+                Text_CPF.setText("");
+
+            } catch (java.lang.NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroProdutos2.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        Text_id.setText("");
-        Text_Nome.setText("");
-        Text_Telefone.setText("");
-        Text_Email.setText("");
-        Text_CPF.setText("");
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
-        Connection conn = new Conexao().getConnection();
-        Fornecedores p = new Fornecedores();
-        p.setId(Integer.parseInt(Text_id.getText()));
-
-        p.Deletar(conn);
         try {
+            Connection conn = new Conexao().getConnection();
+            Fornecedores p = new Fornecedores();
+
+            p.setId(Integer.parseInt(Text_id.getText()));
+
+            p.Deletar(conn);
             Consultar();
+
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Telefone.setText("");
+            Text_Email.setText("");
+            Text_CPF.setText("");
+
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroProdutos2.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
-        Text_id.setText("");
-        Text_Nome.setText("");
-        Text_Telefone.setText("");
-        Text_Email.setText("");
-        Text_CPF.setText("");
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             Consultar();
+
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroFornecedor.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
@@ -482,16 +491,24 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFornecedor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFornecedor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFornecedor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastroFornecedor.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
