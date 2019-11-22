@@ -270,9 +270,9 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                         .addComponent(Botao_Cadastro)
                         .addGap(18, 18, 18)
                         .addComponent(Botao_Alterar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(Botao_Excluir)
-                        .addGap(0, 496, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Botao_Sair))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -299,7 +299,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addComponent(Text_Quant))
                             .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 285, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -309,29 +309,25 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(37, 37, 37))
+                            .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Text_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(Text_Nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Text_Compra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Text_Venda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(Text_Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGap(20, 20, 20)
+                        .addComponent(Text_Quant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Botao_Cadastro)
                     .addComponent(Botao_Sair)
@@ -400,6 +396,11 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Text_id.setText("");
+        Text_Nome.setText("");
+        Text_Compra.setText("");
+        Text_Venda.setText("");
+        Text_Quant.setText("");
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
@@ -418,6 +419,11 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Text_id.setText("");
+        Text_Nome.setText("");
+        Text_Compra.setText("");
+        Text_Venda.setText("");
+        Text_Quant.setText("");
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
     private void Tabela_ProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ProdutosMouseClicked
@@ -441,6 +447,11 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Text_id.setText("");
+        Text_Nome.setText("");
+        Text_Compra.setText("");
+        Text_Venda.setText("");
+        Text_Quant.setText("");
     }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
