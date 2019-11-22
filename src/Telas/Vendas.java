@@ -319,6 +319,14 @@ public class Vendas extends javax.swing.JFrame {
 
     private void Botao_ConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ConfirmaActionPerformed
         Connection conn = new Conexao().getConnection();
+
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
+
+        Codigo = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 0));
+        Produto = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 1));
+        ValorUnit = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 2));
+        Quantidade = ((String) Tabela_Produtos_Consulta.getValueAt(Tabela_Produtos_Consulta.getSelectedRow(), 3));
+
         Financeiro p = new Financeiro();
 
         p.setParceiro(Text_Cliente.getText());
@@ -338,6 +346,8 @@ public class Vendas extends javax.swing.JFrame {
         try {
             Consultar();
         } catch (SQLException ex) {
+            Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (java.lang.NullPointerException ex) {
             Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_Botao_ConfirmaActionPerformed

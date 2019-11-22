@@ -1,7 +1,6 @@
 package Classes;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -15,7 +14,7 @@ public class Financeiro {
     private double valorunit;
     private int quantidade;
     private double total;
-    private Date datacompra;
+    private String datacompra;
     private String vencimento;
     private String tipo;
     private String status;
@@ -28,40 +27,47 @@ public class Financeiro {
         this.datacompra = datacompra;
         this.vencimento = vencimento;
     }*/
-    
-
     public void cadastrar(Connection conn) {
         String sqlInsert = "INSERT INTO contas(Parceiro, Produto, ValorUnit, Quantidade, Total, DataCompra, Vencimento, Tipo, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement stm = null;
+        
         java.util.Date hoje = new java.util.Date();
+        
         SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
         Calendar c = Calendar.getInstance();
+        
+        int diah = c.get(Calendar.DAY_OF_MONTH);
+        int mesh = c.get(Calendar.MONTH) + 1;
+        int anoh = c.get(Calendar.YEAR);
+
+        String data = diah + "/" + mesh + "/" + anoh;
+        
+        setDatacompra(data);
+        
         
         for (int count = 0; count < getParcelas(); count++) {
             c.setTime(hoje);
             c.add(Calendar.DATE, +30 * (count + 1));
-            setVencimento(dataFormatada.format(dataFormatada.format(c.getTime())));
-        
-        setDatacompra((java.sql.Date) hoje);
-        
-        try {
-            stm = conn.prepareStatement(sqlInsert);
+            setVencimento(dataFormatada.format(c.getTime()));
 
-            stm.setString(1, getParceiro());
-            stm.setString(2, getProduto());
-            stm.setDouble(3, getValorunit());
-            stm.setInt(4, getQuantidade());
-            stm.setDouble(5, getTotal());
-            stm.setDate(6, getDatacompra());
-            stm.setString(7, getVencimento());
-            stm.setString(8, getTipo());
-            stm.setString(9, getStatus());
+           try {
+                stm = conn.prepareStatement(sqlInsert);
 
-            stm.execute();
-        } catch (SQLException u) {
-            System.out.println("Erro de Banco de dados");
-        }
+                stm.setString(1, getParceiro());
+                stm.setString(2, getProduto());
+                stm.setDouble(3, getValorunit());
+                stm.setInt(4, getQuantidade());
+                stm.setDouble(5, getTotal());
+                stm.setString(6, getDatacompra());
+                stm.setString(7, getVencimento());
+                stm.setString(8, getTipo());
+                stm.setString(9, getStatus());
+
+                stm.execute();
+            } catch (SQLException u) {
+                System.out.println("Erro de Banco de dados");
+            }
         }
     }
 
@@ -152,14 +158,14 @@ public class Financeiro {
     /**
      * @return the datacompra
      */
-    public Date getDatacompra() {
+    public String getDatacompra() {
         return datacompra;
     }
 
     /**
      * @param datacompra the datacompra to set
      */
-    public void setDatacompra(Date datacompra) {
+    public void setDatacompra(String datacompra) {
         this.datacompra = datacompra;
     }
 
@@ -218,7 +224,5 @@ public class Financeiro {
     public void setParcelas(int parcelas) {
         this.parcelas = parcelas;
     }
-
-
 
 }
