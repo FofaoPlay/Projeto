@@ -472,8 +472,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             Consultar();
 
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroFornecedor.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 

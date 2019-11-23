@@ -362,54 +362,77 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
-        try {
-            Connection conn = new Conec.Conexao().getConnection();
-            Produtos p = new Produtos();
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Connection conn = new Conec.Conexao().getConnection();
+                Produtos p = new Produtos();
 
-            p.setNome(Text_Nome.getText());
-            p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
-            p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
-            p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+                p.setNome(Text_Nome.getText());
+                p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+                p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+                p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
 
-            p.cadastrar(conn);
+                if (Double.parseDouble(Text_Quant.getText()) >= 1) {
 
-            Consultar();
-            Text_id.setText("");
-            Text_Nome.setText("");
-            Text_Compra.setText("");
-            Text_Venda.setText("");
-            Text_Quant.setText("");
-        } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
-        } catch (java.lang.NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Insira valores válidos", "Problema", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+                    p.cadastrar(conn);
+
+                    try {
+                        Consultar();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Text_id.setText("");
+                    Text_Nome.setText("");
+                    Text_Compra.setText("");
+                    Text_Venda.setText("");
+                    Text_Quant.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "A quantidade não pode ser menor que 1", "Problema", JOptionPane.ERROR_MESSAGE);
+                }
+
+            } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
+                JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+            } catch (java.lang.NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Insira valores válidos", "Problema", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
-        try {
-            Connection conn = new Conexao().getConnection();
-            Produtos p = new Produtos();
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                Connection conn = new Conexao().getConnection();
+                Produtos p = new Produtos();
 
-            p.setId(Integer.parseInt(Text_id.getText()));
-            p.setNome(Text_Nome.getText());
-            p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
-            p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
-            p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+                p.setId(Integer.parseInt(Text_id.getText()));
+                p.setNome(Text_Nome.getText());
+                p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+                p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+                p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
 
-            p.Alterar(conn);
-            Consultar();
-            Text_id.setText("");
-            Text_Nome.setText("");
-            Text_Compra.setText("");
-            Text_Venda.setText("");
-            Text_Quant.setText("");
-        } catch (java.lang.NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+                if (Double.parseDouble(Text_Quant.getText()) >= 1) {
+                    p.Alterar(conn);
+                    try {
+                        Consultar();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Text_id.setText("");
+                    Text_Nome.setText("");
+                    Text_Compra.setText("");
+                    Text_Venda.setText("");
+                    Text_Quant.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "A quantidade não pode ser menor que 1", "Problema", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (java.lang.NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+            }
+
         }
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
@@ -449,8 +472,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Consultar();
 
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
