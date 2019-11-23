@@ -362,15 +362,20 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
+        if ("".equals(Text_id.getText())){
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {    
+        }
         try {
             Connection conn = new Conec.Conexao().getConnection();
             Produtos p = new Produtos();
-
+            
             p.setNome(Text_Nome.getText());
             p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
             p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
             p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
-
+            
             p.cadastrar(conn);
 
             Consultar();
@@ -386,9 +391,29 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Valor Já cadastrado", "Problema", JOptionPane.ERROR_MESSAGE);
+            
+            Connection conn = new Conexao().getConnection();
+            Produtos p = new Produtos();
+            p.Alterar(conn);
+            try {
+                Consultar();
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Compra.setText("");
+            Text_Venda.setText("");
+            Text_Quant.setText("");
+        }
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {
         try {
             Connection conn = new Conexao().getConnection();
             Produtos p = new Produtos();
@@ -410,6 +435,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 

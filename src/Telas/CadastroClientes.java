@@ -356,6 +356,7 @@ public class CadastroClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
+        if ("".equals(Text_id.getText())){
         if ("".equals(Text_Nome.getText()) || "".equals(Text_Telefone.getText()) || "".equals(Text_Email.getText()) || "".equals(Text_CPF.getText())) {
             JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -375,12 +376,28 @@ public class CadastroClientes extends javax.swing.JFrame {
                 Text_Telefone.setText("");
                 Text_Email.setText("");
                 Text_CPF.setText("");
-
+                
             } catch (java.lang.NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
             } catch (SQLException ex) {
                 Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Valor Já cadastrado", "Problema", JOptionPane.ERROR_MESSAGE);
+            Connection conn = new Conexao().getConnection();
+            Clientes p = new Clientes();
+            p.cadastrar(conn);
+            try {
+                Consultar();
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                Text_id.setText("");
+                Text_Nome.setText("");
+                Text_Telefone.setText("");
+                Text_Email.setText("");
+                Text_CPF.setText("");
         }
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
 

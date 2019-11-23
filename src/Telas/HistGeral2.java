@@ -241,8 +241,7 @@ public class HistGeral2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Botao_Buscar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(Botao_Buscar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
