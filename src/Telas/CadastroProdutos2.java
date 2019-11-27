@@ -363,6 +363,10 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
 
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
         if ("".equals(Text_id.getText())){
+        int resp;
+        resp = JOptionPane.showConfirmDialog(null, "Deseja concluir este cadastro?");
+        
+        if (resp == JOptionPane.YES_OPTION){
         if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
             JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
         } else {    
@@ -384,12 +388,18 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Text_Compra.setText("");
             Text_Venda.setText("");
             Text_Quant.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Produto cadastrado.");
+            
         } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Insira valores válidos", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
             Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Cadastro Cancelado.");
         }
         }else{
             JOptionPane.showMessageDialog(null, "Valor Já cadastrado", "Problema", JOptionPane.ERROR_MESSAGE);
@@ -408,13 +418,19 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Text_Venda.setText("");
             Text_Quant.setText("");
         }
+        
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
+        
         if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
             JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
         } else {
         try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados do produto?");
+        
+        if (resp == JOptionPane.YES_OPTION){
             Connection conn = new Conexao().getConnection();
             Produtos p = new Produtos();
 
@@ -431,6 +447,12 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Text_Compra.setText("");
             Text_Venda.setText("");
             Text_Quant.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Os dados do produto foram atualizados.");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
         } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {
@@ -451,6 +473,10 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
 
     private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
         try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja EXCLUIR este cliente?");
+        
+        if (resp == JOptionPane.YES_OPTION){
             Connection conn = new Conexao().getConnection();
             Produtos p = new Produtos();
             p.setId(Integer.parseInt(Text_id.getText()));
@@ -463,6 +489,12 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Text_Compra.setText("");
             Text_Venda.setText("");
             Text_Quant.setText("");
+            
+            JOptionPane.showMessageDialog(null, "O cliente foi excluído.");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
         } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {

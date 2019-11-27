@@ -3,11 +3,14 @@ package Telas;
 import Classes.Financeiro;
 import Conec.Conexao;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -57,12 +60,41 @@ public class Vendas extends javax.swing.JFrame {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void CarregaCliente() {
+        Connection conn = null;
+        Conexao bd = new Conexao();
+
+        conn = bd.getConnection();
+
+        ArrayList strList = new ArrayList();
+
+        String query = "SELECT Nome from Clientes ORDER BY Nome asc";
+        
+        try {
+            PreparedStatement ps = null;
+            ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                strList.add(rs.getString("Nome"));
+                
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //adiciona no comboBox
+        DefaultComboBoxModel cb = new DefaultComboBoxModel(strList.toArray());
+        ComboBoxCliente.setModel(cb);
+    }
 
     /**
      * Creates new form Produtos
      */
     public Vendas() {
         initComponents();
+        CarregaCliente();
     }
 
     /**
@@ -80,10 +112,10 @@ public class Vendas extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Botao_Sair = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        Text_Cliente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         Text_Quantidade = new javax.swing.JFormattedTextField();
         Text_Parcelas = new javax.swing.JFormattedTextField();
+        ComboBoxCliente = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -229,8 +261,8 @@ public class Vendas extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Text_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,10 +287,9 @@ public class Vendas extends javax.swing.JFrame {
                             .addComponent(Botao_Sair)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5)
-                                .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(Text_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)))
+                                .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ComboBoxCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addComponent(Botao_Confirma)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -319,7 +350,11 @@ public class Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_ConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ConfirmaActionPerformed
-        try {
+        int resp;
+        resp = JOptionPane.showConfirmDialog(null, "Você confirma essa venda?");
+        
+        if (resp == JOptionPane.YES_OPTION){
+            try {
             Connection conn = new Conexao().getConnection();
 
             DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos_Consulta.getModel();
@@ -332,7 +367,7 @@ public class Vendas extends javax.swing.JFrame {
             Financeiro p = new Financeiro();
 
             p.setId(Integer.parseInt(Codigo));
-            p.setParceiro(Text_Cliente.getText());
+            p.setParceiro((String)ComboBoxCliente.getSelectedItem());
             p.setProduto(Produto);
             Double ValorUni = (Double.parseDouble(ValorUnit));
             p.setQuantidade(Integer.parseInt(Text_Quantidade.getText()));
@@ -345,12 +380,14 @@ public class Vendas extends javax.swing.JFrame {
 
             p.setTipo("Saída");
             p.setStatus("Não Quitado");
-            if (!"".equals(Text_Cliente.getText())) {
                 if (Double.parseDouble(Text_Quantidade.getText()) >= 1) {
                     if (Parcelas >= 1) {
                         if ((Integer.parseInt(Quantidade)) >= (Integer.parseInt(Text_Quantidade.getText()))) {
                             try {
                                 p.cadastrar(conn);
+                                Text_Quantidade.setText("");
+                                Text_Parcelas.setText("");
+                                JOptionPane.showMessageDialog(null, "Venda Concluída");
                             } catch (SQLException ex) {
                                 Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -370,14 +407,15 @@ public class Vendas extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "A quantidade de retirada não pode ser menor que 1", "Problema", JOptionPane.ERROR_MESSAGE);
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Insira um nome para o cliente", "Problema", JOptionPane.ERROR_MESSAGE);
-            }
         } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Insira valores válidos", "Problema", JOptionPane.ERROR_MESSAGE);
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Venda Cancelada");
+        }
+        
 
     }//GEN-LAST:event_Botao_ConfirmaActionPerformed
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -427,6 +465,7 @@ public class Vendas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Confirma;
     private javax.swing.JButton Botao_Sair;
+    private javax.swing.JComboBox<String> ComboBoxCliente;
     private javax.swing.JMenuItem MenuCadastroClientes;
     private javax.swing.JMenuItem MenuCadastroFornecedores;
     private javax.swing.JMenuItem MenuCadastroProdutos;
@@ -437,7 +476,6 @@ public class Vendas extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Produtos_Consulta;
-    private javax.swing.JTextField Text_Cliente;
     private javax.swing.JFormattedTextField Text_Parcelas;
     private javax.swing.JFormattedTextField Text_Quantidade;
     private javax.swing.JLabel jLabel1;

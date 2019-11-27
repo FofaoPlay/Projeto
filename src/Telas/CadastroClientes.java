@@ -357,6 +357,10 @@ public class CadastroClientes extends javax.swing.JFrame {
 
     private void Botao_CadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastrarActionPerformed
         if ("".equals(Text_id.getText())){
+        int resp;
+        resp = JOptionPane.showConfirmDialog(null, "Deseja concluir este cadastro?");
+        
+        if (resp == JOptionPane.YES_OPTION){
         if ("".equals(Text_Nome.getText()) || "".equals(Text_Telefone.getText()) || "".equals(Text_Email.getText()) || "".equals(Text_CPF.getText())) {
             JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -376,12 +380,16 @@ public class CadastroClientes extends javax.swing.JFrame {
                 Text_Telefone.setText("");
                 Text_Email.setText("");
                 Text_CPF.setText("");
+                JOptionPane.showMessageDialog(null, "Cliente cadastrado.");
                 
             } catch (java.lang.NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
             } catch (SQLException ex) {
                 Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+        }else{
+            JOptionPane.showMessageDialog(null, "Cadastro Cancelado.");
         }
         }else{
             JOptionPane.showMessageDialog(null, "Valor Já cadastrado", "Problema", JOptionPane.ERROR_MESSAGE);
@@ -399,6 +407,7 @@ public class CadastroClientes extends javax.swing.JFrame {
                 Text_Email.setText("");
                 Text_CPF.setText("");
         }
+        
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
 
     private void Tabela_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ClientesMouseClicked
@@ -416,6 +425,10 @@ public class CadastroClientes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
+                int resp;
+                resp = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados do produto?");
+        
+        if (resp == JOptionPane.YES_OPTION){
                 Connection conn = new Conexao().getConnection();
                 Clientes p = new Clientes();
 
@@ -434,6 +447,11 @@ public class CadastroClientes extends javax.swing.JFrame {
                 Text_Email.setText("");
                 Text_CPF.setText("");
 
+                JOptionPane.showMessageDialog(null, "Os dados do cliente foram atualizados.");
+                
+                }else{
+                    JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+                }
             } catch (java.lang.NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
             } catch (SQLException ex) {
@@ -444,6 +462,10 @@ public class CadastroClientes extends javax.swing.JFrame {
 
     private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
         try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja EXCLUIR este cliente?");
+        
+        if (resp == JOptionPane.YES_OPTION){
             Connection conn = new Conexao().getConnection();
             Clientes p = new Clientes();
             p.setId(Integer.parseInt(Text_id.getText()));
@@ -456,6 +478,12 @@ public class CadastroClientes extends javax.swing.JFrame {
             Text_Telefone.setText("");
             Text_Email.setText("");
             Text_CPF.setText("");
+            
+            JOptionPane.showMessageDialog(null, "O cliente foi excluído.");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
         } catch (java.lang.NumberFormatException ex) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {

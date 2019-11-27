@@ -312,6 +312,10 @@ public class HistGeral2 extends javax.swing.JFrame {
 
     private void Botao_QuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_QuitarActionPerformed
         try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja quitar esta conta?");
+        
+        if (resp == JOptionPane.YES_OPTION){
             Connection conn = new Conexao().getConnection();
 
             DefaultTableModel grid0 = (DefaultTableModel) Tabela_Conta.getModel();
@@ -322,6 +326,9 @@ public class HistGeral2 extends javax.swing.JFrame {
             Financeiro p = new Financeiro();
             p.setStatus("Quitado");
             p.setId(Integer.parseInt(Codigo));
+            
+            JOptionPane.showMessageDialog(null, "Conta Quitada.");
+            
             try {
                 p.Altera_Status(conn);
             } catch (SQLException ex) {
@@ -334,6 +341,9 @@ public class HistGeral2 extends javax.swing.JFrame {
             } catch (java.lang.NullPointerException ex) {
                 Logger.getLogger(Vendas.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
         } catch (java.lang.ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
         }
