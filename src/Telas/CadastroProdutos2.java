@@ -434,11 +434,11 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Connection conn = new Conexao().getConnection();
             Produtos p = new Produtos();
 
-            p.setId(Integer.parseInt(Text_id.getText()));
-            p.setNome(Text_Nome.getText());
-            p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
-            p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
-            p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+                p.setId(Integer.parseInt(Text_id.getText()));
+                p.setNome(Text_Nome.getText());
+                p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+                p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+                p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
 
             p.Alterar(conn);
             Consultar();
@@ -507,8 +507,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Consultar();
 
         } catch (SQLException ex) {
-            Logger.getLogger(CadastroClientes.class
-                    .getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowActivated
 
