@@ -6,7 +6,6 @@
 package Telas;
 
 import Classes.Fornecedores;
-import Conec.Conexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fofao
  */
-public class CadastroFornecedor extends javax.swing.JFrame {
-
+public class CadastroFornecedor extends javax.swing.JInternalFrame {
     public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Fornecedor.getModel();
         grid0.setNumRows(0);
         Connection conn = null;
-        Conexao bd = new Conexao();
+        Conec.Conexao bd = new Conec.Conexao();
         conn = bd.getConnection();
         Statement stm = null;
         ResultSet rs = null;
@@ -48,9 +46,8 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         rs.close();
         stm.close();
     }
-
     /**
-     * Creates new form CadastroFornecedor
+     * Creates new form CadastroFornecedor2
      */
     public CadastroFornecedor() {
         initComponents();
@@ -65,58 +62,40 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Botao_Excluir = new javax.swing.JButton();
-        Text_Nome = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        Text_Telefone = new javax.swing.JFormattedTextField();
-        Text_Email = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         Botao_Sair = new javax.swing.JButton();
         Text_CPF = new javax.swing.JTextField();
         Botao_Cadastrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        Botao_Excluir = new javax.swing.JButton();
         Botao_Alterar = new javax.swing.JButton();
+        Text_Nome = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Fornecedor = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         Text_id = new javax.swing.JLabel();
+        Text_Telefone = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        MenuCadastros = new javax.swing.JMenu();
-        MenuCadastroClientes = new javax.swing.JMenuItem();
-        MenuCadastroFornecedores = new javax.swing.JMenuItem();
-        MenuCadastroProdutos = new javax.swing.JMenuItem();
-        MenuFinanceiro = new javax.swing.JMenu();
-        MenuPedidos = new javax.swing.JMenuItem();
-        MenuVendas = new javax.swing.JMenuItem();
-        MenuHistorico = new javax.swing.JMenu();
-        MenuHistoricogeral = new javax.swing.JMenuItem();
+        Text_Email = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
-
-        Botao_Excluir.setText("Excluir");
-        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_ExcluirActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Nome:");
-
-        jLabel2.setText("Telefone");
-
-        try {
-            Text_Telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel3.setText("Email:");
 
         Botao_Sair.setText("Sair");
         Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -133,6 +112,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         });
 
         jLabel4.setText("CNPJ:");
+
+        Botao_Excluir.setText("Excluir");
+        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ExcluirActionPerformed(evt);
+            }
+        });
 
         Botao_Alterar.setText("Alterar");
         Botao_Alterar.addActionListener(new java.awt.event.ActionListener() {
@@ -167,74 +153,19 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabela_Fornecedor);
 
+        jLabel1.setText("Nome:");
+
+        jLabel2.setText("Telefone");
+
+        try {
+            Text_Telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         jLabel5.setText("Código:");
 
-        MenuCadastros.setText("Cadastros");
-
-        MenuCadastroClientes.setText("Clientes");
-        MenuCadastroClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuCadastroClientesMouseClicked(evt);
-            }
-        });
-        MenuCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroClientesActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroClientes);
-
-        MenuCadastroFornecedores.setText("Fornecedores");
-        MenuCadastroFornecedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroFornecedoresActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroFornecedores);
-
-        MenuCadastroProdutos.setText("Produtos");
-        MenuCadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroProdutosActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroProdutos);
-
-        jMenuBar1.add(MenuCadastros);
-
-        MenuFinanceiro.setText("Financeiro");
-
-        MenuPedidos.setText("Pedido");
-        MenuPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuPedidosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuPedidos);
-
-        MenuVendas.setText("Vendas");
-        MenuVendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuVendasActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuVendas);
-
-        jMenuBar1.add(MenuFinanceiro);
-
-        MenuHistorico.setText("Histórico");
-
-        MenuHistoricogeral.setText("Geral");
-        MenuHistoricogeral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricogeralActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricogeral);
-
-        jMenuBar1.add(MenuHistorico);
-
-        setJMenuBar(jMenuBar1);
+        jLabel3.setText("Email:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,7 +183,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                                 .addComponent(Botao_Alterar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Botao_Excluir)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 484, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Text_id, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +192,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
-                                        .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGap(0, 71, Short.MAX_VALUE))
                                     .addComponent(Text_Nome))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,55 +248,13 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(Botao_Cadastrar)
                     .addComponent(Botao_Alterar)
                     .addComponent(Botao_Excluir))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
-
-    }//GEN-LAST:event_MenuCadastroClientesMouseClicked
-
-    private void MenuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroClientesActionPerformed
-        CadastroClientes c = new CadastroClientes();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroClientesActionPerformed
-
-    private void MenuCadastroFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFornecedoresActionPerformed
-        CadastroFornecedor c = new CadastroFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
-
-    private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
-        CadastroProdutos2 c = new CadastroProdutos2();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
-
-    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
-        Pedidos c = new Pedidos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuPedidosActionPerformed
-
-    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
-        Vendas c = new Vendas();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuVendasActionPerformed
-
-    private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral2 c = new HistGeral2();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricogeralActionPerformed
-
     private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
-        Menu m = new Menu();
-        m.setVisible(true);
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
 
@@ -379,7 +268,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                Connection conn = new Conexao().getConnection();
+                Connection conn = new Conec.Conexao().getConnection();
                 Fornecedores p = new Fornecedores();
 
                 p.setNome(Text_Nome.getText());
@@ -409,7 +298,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         }
         }else{
             JOptionPane.showMessageDialog(null, "Valor Já cadastrado", "Problema", JOptionPane.ERROR_MESSAGE);
-            Connection conn = new Conexao().getConnection();
+            Connection conn = new Conec.Conexao().getConnection();
             Fornecedores p = new Fornecedores();
             p.cadastrar(conn);
             try {
@@ -423,18 +312,41 @@ public class CadastroFornecedor extends javax.swing.JFrame {
                 Text_Email.setText("");
                 Text_CPF.setText("");
         }
-        
     }//GEN-LAST:event_Botao_CadastrarActionPerformed
 
-    private void Tabela_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_FornecedorMouseClicked
-        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Fornecedor.getModel();
+    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
+        try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja EXCLUIR este cliente?");
+        
+        if (resp == JOptionPane.YES_OPTION){
+            Connection conn = new Conec.Conexao().getConnection();
+            Fornecedores p = new Fornecedores();
 
-        Text_id.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
-        Text_Nome.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 1));
-        Text_Telefone.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 2));
-        Text_Email.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 3));
-        Text_CPF.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 4));
-    }//GEN-LAST:event_Tabela_FornecedorMouseClicked
+            p.setId(Integer.parseInt(Text_id.getText()));
+
+            p.Deletar(conn);
+            Consultar();
+
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Telefone.setText("");
+            Text_Email.setText("");
+            Text_CPF.setText("");
+            
+            JOptionPane.showMessageDialog(null, "O cliente foi excluído.");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroProdutos2.class
+                    .getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Botao_ExcluirActionPerformed
 
     private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
         if ("".equals(Text_Nome.getText()) || "".equals(Text_Telefone.getText()) || "".equals(Text_Email.getText()) || "".equals(Text_CPF.getText())) {
@@ -445,7 +357,7 @@ public class CadastroFornecedor extends javax.swing.JFrame {
             resp = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados do produto?");
         
         if (resp == JOptionPane.YES_OPTION){
-                Connection conn = new Conexao().getConnection();
+                Connection conn = new Conec.Conexao().getConnection();
                 Fornecedores p = new Fornecedores();
 
                 p.setId(Integer.parseInt(Text_id.getText()));
@@ -478,106 +390,31 @@ public class CadastroFornecedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Botao_AlterarActionPerformed
 
-    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
-        try {
-            int resp;
-            resp = JOptionPane.showConfirmDialog(null, "Deseja EXCLUIR este cliente?");
-        
-        if (resp == JOptionPane.YES_OPTION){
-            Connection conn = new Conexao().getConnection();
-            Fornecedores p = new Fornecedores();
+    private void Tabela_FornecedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_FornecedorMouseClicked
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Fornecedor.getModel();
 
-            p.setId(Integer.parseInt(Text_id.getText()));
+        Text_id.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 0));
+        Text_Nome.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 1));
+        Text_Telefone.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 2));
+        Text_Email.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 3));
+        Text_CPF.setText((String) Tabela_Fornecedor.getValueAt(Tabela_Fornecedor.getSelectedRow(), 4));
+    }//GEN-LAST:event_Tabela_FornecedorMouseClicked
 
-            p.Deletar(conn);
-            Consultar();
-
-            Text_id.setText("");
-            Text_Nome.setText("");
-            Text_Telefone.setText("");
-            Text_Email.setText("");
-            Text_CPF.setText("");
-            
-            JOptionPane.showMessageDialog(null, "O cliente foi excluído.");
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
-        }
-        } catch (java.lang.NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroProdutos2.class
-                    .getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_Botao_ExcluirActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         try {
             Consultar();
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastroFornecedor.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_formWindowActivated
+    }//GEN-LAST:event_formInternalFrameActivated
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroFornecedor.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroFornecedor().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Alterar;
     private javax.swing.JButton Botao_Cadastrar;
     private javax.swing.JButton Botao_Excluir;
     private javax.swing.JButton Botao_Sair;
-    private javax.swing.JMenuItem MenuCadastroClientes;
-    private javax.swing.JMenuItem MenuCadastroFornecedores;
-    private javax.swing.JMenuItem MenuCadastroProdutos;
-    private javax.swing.JMenu MenuCadastros;
-    private javax.swing.JMenu MenuFinanceiro;
-    private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricogeral;
-    private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Fornecedor;
     private javax.swing.JTextField Text_CPF;
     private javax.swing.JTextField Text_Email;
@@ -589,7 +426,6 @@ public class CadastroFornecedor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

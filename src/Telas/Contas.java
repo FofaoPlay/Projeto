@@ -6,7 +6,6 @@
 package Telas;
 
 import Classes.Financeiro;
-import Conec.Conexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fofao
  */
-public class HistGeral2 extends javax.swing.JFrame {
-
+public class Contas extends javax.swing.JInternalFrame {
     public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Conta.getModel();
         grid0.setNumRows(0);
         Connection conn = null;
-        Conexao bd = new Conexao();
+        Conec.Conexao bd = new Conec.Conexao();
         conn = bd.getConnection();
         Statement stm = null;
         ResultSet rs = null;
@@ -72,11 +70,61 @@ public class HistGeral2 extends javax.swing.JFrame {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    String nome;
+    public void Consultar_nome() throws SQLException {
+        DefaultTableModel grid0 = (DefaultTableModel) Tabela_Conta.getModel();
+        grid0.setNumRows(0);
+        Connection conn = null;
+        Conec.Conexao bd = new Conec.Conexao();
+        conn = bd.getConnection();
+        Statement stm = null;
+        ResultSet rs = null;
+        String SQLConsulta = "SELECT Codigo, Parceiro, Produto, ValorUnit, Quantidade, Total, DataCompra, Vencimento,Tipo, Status FROM Contas WHERE Parceiro LIKE '%"+nome+"%'";
+        try {
+            stm = conn.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs = stm.executeQuery(SQLConsulta);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            while (rs.next()) {
+                String recebe_id = rs.getString("Codigo");
+                String recebe_parceiro = rs.getString("Parceiro");
+                String recebe_produto = rs.getString("Produto");
+                String recebe_valorunit = rs.getString("ValorUnit");
+                String recebe_quantidade = rs.getString("Quantidade");
+                String recebe_total = rs.getString("Total");
+                String recebe_datacompra = rs.getString("DataCompra");
+                String recebe_vencimento = rs.getString("Vencimento");
+                String recebe_tipo = rs.getString("Tipo");
+                String recebe_status = rs.getString("Status");
 
+                DefaultTableModel grid = (DefaultTableModel) Tabela_Conta.getModel();
+                grid0.addRow(new String[]{recebe_id, recebe_parceiro, recebe_produto, recebe_valorunit, recebe_quantidade, recebe_total, recebe_datacompra, recebe_vencimento, recebe_tipo, recebe_status});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            stm.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Creates new form Contas
      */
-    public HistGeral2() {
+    public Contas() {
         initComponents();
     }
 
@@ -96,21 +144,22 @@ public class HistGeral2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Botao_Buscar = new javax.swing.JButton();
         Botao_Quitar = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        MenuCadastros = new javax.swing.JMenu();
-        MenuCadastroClientes = new javax.swing.JMenuItem();
-        MenuCadastroFornecedores = new javax.swing.JMenuItem();
-        MenuCadastroProdutos = new javax.swing.JMenuItem();
-        MenuFinanceiro = new javax.swing.JMenu();
-        MenuPedidos = new javax.swing.JMenuItem();
-        MenuVendas = new javax.swing.JMenuItem();
-        MenuHistorico = new javax.swing.JMenu();
-        MenuHistoricogeral = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
@@ -149,6 +198,11 @@ public class HistGeral2 extends javax.swing.JFrame {
         jLabel1.setText("Pesquisar Parceiro:");
 
         Botao_Buscar.setText("Buscar");
+        Botao_Buscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Botao_BuscarMouseClicked(evt);
+            }
+        });
 
         Botao_Quitar.setText("Quitar");
         Botao_Quitar.addActionListener(new java.awt.event.ActionListener() {
@@ -156,73 +210,6 @@ public class HistGeral2 extends javax.swing.JFrame {
                 Botao_QuitarActionPerformed(evt);
             }
         });
-
-        MenuCadastros.setText("Cadastros");
-
-        MenuCadastroClientes.setText("Clientes");
-        MenuCadastroClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuCadastroClientesMouseClicked(evt);
-            }
-        });
-        MenuCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroClientesActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroClientes);
-
-        MenuCadastroFornecedores.setText("Fornecedores");
-        MenuCadastroFornecedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroFornecedoresActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroFornecedores);
-
-        MenuCadastroProdutos.setText("Produtos");
-        MenuCadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroProdutosActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroProdutos);
-
-        jMenuBar1.add(MenuCadastros);
-
-        MenuFinanceiro.setText("Financeiro");
-
-        MenuPedidos.setText("Pedido");
-        MenuPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuPedidosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuPedidos);
-
-        MenuVendas.setText("Vendas");
-        MenuVendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuVendasActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuVendas);
-
-        jMenuBar1.add(MenuFinanceiro);
-
-        MenuHistorico.setText("Histórico");
-
-        MenuHistoricogeral.setText("Geral");
-        MenuHistoricogeral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricogeralActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricogeral);
-
-        jMenuBar1.add(MenuHistorico);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -235,7 +222,7 @@ public class HistGeral2 extends javax.swing.JFrame {
                         .addComponent(Botao_Quitar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Botao_Sair))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 804, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,7 +234,7 @@ public class HistGeral2 extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -264,51 +251,18 @@ public class HistGeral2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
-
-    }//GEN-LAST:event_MenuCadastroClientesMouseClicked
-
-    private void MenuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroClientesActionPerformed
-        CadastroClientes c = new CadastroClientes();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroClientesActionPerformed
-
-    private void MenuCadastroFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFornecedoresActionPerformed
-        CadastroFornecedor c = new CadastroFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
-
-    private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
-        CadastroProdutos2 c = new CadastroProdutos2();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
-
-    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
-        Pedidos c = new Pedidos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuPedidosActionPerformed
-
-    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
-        Vendas c = new Vendas();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuVendasActionPerformed
-
-    private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral2 c = new HistGeral2();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricogeralActionPerformed
-
     private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
-        Menu m = new Menu();
-        m.setVisible(true);
         dispose();
     }//GEN-LAST:event_Botao_SairMouseClicked
+
+    private void Botao_BuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_BuscarMouseClicked
+        nome=Pesquisa.getText();
+        try {
+            Consultar_nome();
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Botao_BuscarMouseClicked
 
     private void Botao_QuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_QuitarActionPerformed
         try {
@@ -316,7 +270,7 @@ public class HistGeral2 extends javax.swing.JFrame {
             resp = JOptionPane.showConfirmDialog(null, "Deseja quitar esta conta?");
         
         if (resp == JOptionPane.YES_OPTION){
-            Connection conn = new Conexao().getConnection();
+            Connection conn = new Conec.Conexao().getConnection();
 
             DefaultTableModel grid0 = (DefaultTableModel) Tabela_Conta.getModel();
 
@@ -349,73 +303,22 @@ public class HistGeral2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Botao_QuitarActionPerformed
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         try {
             Consultar();
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_formWindowActivated
+    }//GEN-LAST:event_formInternalFrameActivated
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HistGeral2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HistGeral2().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Buscar;
     private javax.swing.JButton Botao_Quitar;
     private javax.swing.JButton Botao_Sair;
-    private javax.swing.JMenuItem MenuCadastroClientes;
-    private javax.swing.JMenuItem MenuCadastroFornecedores;
-    private javax.swing.JMenuItem MenuCadastroProdutos;
-    private javax.swing.JMenu MenuCadastros;
-    private javax.swing.JMenu MenuFinanceiro;
-    private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricogeral;
-    private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTextField Pesquisa;
     private javax.swing.JTable Tabela_Conta;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

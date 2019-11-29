@@ -6,7 +6,6 @@
 package Telas;
 
 import Classes.Produtos;
-import Conec.Conexao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Fofao
  */
-public class CadastroProdutos2 extends javax.swing.JFrame {
-
+public class CadastroProdutos2 extends javax.swing.JInternalFrame {
     public void Consultar() throws SQLException {
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos.getModel();
         grid0.setNumRows(0);
         Connection conn = null;
-        Conexao bd = new Conexao();
+        Conec.Conexao bd = new Conec.Conexao();
         conn = bd.getConnection();
         Statement stm = null;
         ResultSet rs = null;
@@ -46,7 +44,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         rs.close();
         stm.close();
     }
-
     /**
      * Creates new form CadastroProdutos
      */
@@ -63,47 +60,64 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Text_Nome = new javax.swing.JTextField();
+        Text_Venda = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        Botao_Alterar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        Botao_Excluir = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        Text_id = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         Botao_Sair = new javax.swing.JButton();
         Botao_Cadastro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabela_Produtos = new javax.swing.JTable();
         Text_Quant = new javax.swing.JTextField();
         Text_Compra = new javax.swing.JTextField();
-        Text_Venda = new javax.swing.JTextField();
-        Botao_Alterar = new javax.swing.JButton();
-        Botao_Excluir = new javax.swing.JButton();
-        Text_id = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        MenuCadastros = new javax.swing.JMenu();
-        MenuCadastroClientes = new javax.swing.JMenuItem();
-        MenuCadastroFornecedores = new javax.swing.JMenuItem();
-        MenuCadastroProdutos = new javax.swing.JMenuItem();
-        MenuFinanceiro = new javax.swing.JMenu();
-        MenuPedidos = new javax.swing.JMenuItem();
-        MenuVendas = new javax.swing.JMenuItem();
-        MenuHistorico = new javax.swing.JMenu();
-        MenuHistoricogeral = new javax.swing.JMenuItem();
+        Text_Nome = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
             }
         });
 
         jLabel1.setText("Nome do Produto:");
 
+        Botao_Alterar.setText("Alterar");
+        Botao_Alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_AlterarActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Preço de Venda:");
+
+        Botao_Excluir.setText("Excluir");
+        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_ExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Preço de Compra:");
 
         jLabel4.setText("Quantidade:");
+
+        jLabel5.setText("Código:");
 
         Botao_Sair.setText("Sair");
         Botao_Sair.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -155,89 +169,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabela_Produtos);
 
-        Botao_Alterar.setText("Alterar");
-        Botao_Alterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_AlterarActionPerformed(evt);
-            }
-        });
-
-        Botao_Excluir.setText("Excluir");
-        Botao_Excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Botao_ExcluirActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Código:");
-
-        MenuCadastros.setText("Cadastros");
-
-        MenuCadastroClientes.setText("Clientes");
-        MenuCadastroClientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuCadastroClientesMouseClicked(evt);
-            }
-        });
-        MenuCadastroClientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroClientesActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroClientes);
-
-        MenuCadastroFornecedores.setText("Fornecedores");
-        MenuCadastroFornecedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroFornecedoresActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroFornecedores);
-
-        MenuCadastroProdutos.setText("Produtos");
-        MenuCadastroProdutos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuCadastroProdutosActionPerformed(evt);
-            }
-        });
-        MenuCadastros.add(MenuCadastroProdutos);
-
-        jMenuBar1.add(MenuCadastros);
-
-        MenuFinanceiro.setText("Financeiro");
-
-        MenuPedidos.setText("Pedido");
-        MenuPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuPedidosActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuPedidos);
-
-        MenuVendas.setText("Vendas");
-        MenuVendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuVendasActionPerformed(evt);
-            }
-        });
-        MenuFinanceiro.add(MenuVendas);
-
-        jMenuBar1.add(MenuFinanceiro);
-
-        MenuHistorico.setText("Histórico");
-
-        MenuHistoricogeral.setText("Geral");
-        MenuHistoricogeral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuHistoricogeralActionPerformed(evt);
-            }
-        });
-        MenuHistorico.add(MenuHistoricogeral);
-
-        jMenuBar1.add(MenuHistorico);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,7 +210,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addComponent(Text_Quant))
                             .addComponent(jLabel4))
-                        .addGap(0, 285, Short.MAX_VALUE)))
+                        .addGap(0, 274, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -313,53 +244,89 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
                     .addComponent(Botao_Sair)
                     .addComponent(Botao_Alterar)
                     .addComponent(Botao_Excluir))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
+        if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
+            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
+        } else {
+        try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados do produto?");
+        
+        if (resp == JOptionPane.YES_OPTION){
+            Connection conn = new Conec.Conexao().getConnection();
+            Produtos p = new Produtos();
+
+                p.setId(Integer.parseInt(Text_id.getText()));
+                p.setNome(Text_Nome.getText());
+                p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
+                p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
+                p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
+
+            p.Alterar(conn);
+            Consultar();
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Compra.setText("");
+            Text_Venda.setText("");
+            Text_Quant.setText("");
+            
+            JOptionPane.showMessageDialog(null, "Os dados do produto foram atualizados.");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+    }//GEN-LAST:event_Botao_AlterarActionPerformed
+
+    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
+        try {
+            int resp;
+            resp = JOptionPane.showConfirmDialog(null, "Deseja EXCLUIR este produto?");
+        
+        if (resp == JOptionPane.YES_OPTION){
+            Connection conn = new Conec.Conexao().getConnection();
+            Produtos p = new Produtos();
+            p.setId(Integer.parseInt(Text_id.getText()));
+
+            p.Deletar(conn);
+
+            Consultar();
+            Text_id.setText("");
+            Text_Nome.setText("");
+            Text_Compra.setText("");
+            Text_Venda.setText("");
+            Text_Quant.setText("");
+            
+            JOptionPane.showMessageDialog(null, "O produto foi excluído.");
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
+        }
+        } catch (java.lang.NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Botao_ExcluirActionPerformed
+
+    private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
+        dispose();
+    }//GEN-LAST:event_Botao_SairMouseClicked
+
     private void Botao_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SairActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Botao_SairActionPerformed
-
-    private void Botao_CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Botao_CadastroActionPerformed
-
-    private void MenuCadastroClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuCadastroClientesMouseClicked
-
-    }//GEN-LAST:event_MenuCadastroClientesMouseClicked
-
-    private void MenuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroClientesActionPerformed
-        CadastroClientes c = new CadastroClientes();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroClientesActionPerformed
-
-    private void MenuCadastroFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFornecedoresActionPerformed
-        CadastroFornecedor c = new CadastroFornecedor();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
-
-    private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
-        CadastroProdutos2 c = new CadastroProdutos2();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
-
-    private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral2 c = new HistGeral2();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuHistoricogeralActionPerformed
-
-    private void Botao_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_SairMouseClicked
-        Menu m = new Menu();
-        m.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_Botao_SairMouseClicked
 
     private void Botao_CadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Botao_CadastroMouseClicked
         if ("".equals(Text_id.getText())){
@@ -404,7 +371,7 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Valor Já cadastrado", "Problema", JOptionPane.ERROR_MESSAGE);
             
-            Connection conn = new Conexao().getConnection();
+            Connection conn = new Conec.Conexao().getConnection();
             Produtos p = new Produtos();
             p.Alterar(conn);
             try {
@@ -418,48 +385,11 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
             Text_Venda.setText("");
             Text_Quant.setText("");
         }
-        
     }//GEN-LAST:event_Botao_CadastroMouseClicked
 
-    private void Botao_AlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_AlterarActionPerformed
-        
-        if ("".equals(Text_Nome.getText()) || "".equals(Text_Compra.getText()) || "".equals(Text_Venda.getText()) || "".equals(Text_Quant.getText())) {
-            JOptionPane.showMessageDialog(null, "Insira valores válido", "Problema", JOptionPane.ERROR_MESSAGE);
-        } else {
-        try {
-            int resp;
-            resp = JOptionPane.showConfirmDialog(null, "Deseja atualizar os dados do produto?");
-        
-        if (resp == JOptionPane.YES_OPTION){
-            Connection conn = new Conexao().getConnection();
-            Produtos p = new Produtos();
-
-                p.setId(Integer.parseInt(Text_id.getText()));
-                p.setNome(Text_Nome.getText());
-                p.setPrecocompra(Double.parseDouble(Text_Compra.getText()));
-                p.setPrecovenda(Double.parseDouble(Text_Venda.getText()));
-                p.setQuantidade(Integer.parseInt(Text_Quant.getText()));
-
-            p.Alterar(conn);
-            Consultar();
-            Text_id.setText("");
-            Text_Nome.setText("");
-            Text_Compra.setText("");
-            Text_Venda.setText("");
-            Text_Quant.setText("");
-            
-            JOptionPane.showMessageDialog(null, "Os dados do produto foram atualizados.");
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
-        }
-        } catch (java.lang.NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-    }//GEN-LAST:event_Botao_AlterarActionPerformed
+    private void Botao_CadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_CadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Botao_CadastroActionPerformed
 
     private void Tabela_ProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabela_ProdutosMouseClicked
         DefaultTableModel grid0 = (DefaultTableModel) Tabela_Produtos.getModel();
@@ -471,118 +401,21 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
         Text_Quant.setText((String) Tabela_Produtos.getValueAt(Tabela_Produtos.getSelectedRow(), 4));
     }//GEN-LAST:event_Tabela_ProdutosMouseClicked
 
-    private void Botao_ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_ExcluirActionPerformed
-        try {
-            int resp;
-            resp = JOptionPane.showConfirmDialog(null, "Deseja EXCLUIR este cliente?");
-        
-        if (resp == JOptionPane.YES_OPTION){
-            Connection conn = new Conexao().getConnection();
-            Produtos p = new Produtos();
-            p.setId(Integer.parseInt(Text_id.getText()));
-
-            p.Deletar(conn);
-
-            Consultar();
-            Text_id.setText("");
-            Text_Nome.setText("");
-            Text_Compra.setText("");
-            Text_Venda.setText("");
-            Text_Quant.setText("");
-            
-            JOptionPane.showMessageDialog(null, "O cliente foi excluído.");
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Nenhuma informação foi alterada.");
-        }
-        } catch (java.lang.NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela", "Problema", JOptionPane.ERROR_MESSAGE);
-        } catch (SQLException ex) {
-            Logger.getLogger(CadastroProdutos2.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_Botao_ExcluirActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
         try {
             Consultar();
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_formWindowActivated
+    }//GEN-LAST:event_formInternalFrameActivated
 
-    private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
-        Vendas c = new Vendas();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuVendasActionPerformed
-
-    private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
-        Pedidos c = new Pedidos();
-        c.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_MenuPedidosActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProdutos2.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CadastroProdutos2().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Alterar;
     private javax.swing.JButton Botao_Cadastro;
     private javax.swing.JButton Botao_Excluir;
     private javax.swing.JButton Botao_Sair;
-    private javax.swing.JMenuItem MenuCadastroClientes;
-    private javax.swing.JMenuItem MenuCadastroFornecedores;
-    private javax.swing.JMenuItem MenuCadastroProdutos;
-    private javax.swing.JMenu MenuCadastros;
-    private javax.swing.JMenu MenuFinanceiro;
-    private javax.swing.JMenu MenuHistorico;
-    private javax.swing.JMenuItem MenuHistoricogeral;
-    private javax.swing.JMenuItem MenuPedidos;
-    private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JTable Tabela_Produtos;
     private javax.swing.JTextField Text_Compra;
     private javax.swing.JTextField Text_Nome;
@@ -594,7 +427,6 @@ public class CadastroProdutos2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

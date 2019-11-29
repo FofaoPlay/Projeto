@@ -27,6 +27,7 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuCadastros = new javax.swing.JMenu();
         MenuCadastroClientes = new javax.swing.JMenuItem();
@@ -39,6 +40,17 @@ public class Menu extends javax.swing.JFrame {
         MenuHistoricogeral = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1319, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 776, Short.MAX_VALUE)
+        );
 
         MenuCadastros.setText("Cadastros");
 
@@ -73,9 +85,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuCadastros);
 
-        MenuFinanceiro.setText("Financeiro");
+        MenuFinanceiro.setText("Estoque");
 
-        MenuPedidos.setText("Pedido");
+        MenuPedidos.setText("Pedidos");
         MenuPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuPedidosActionPerformed(evt);
@@ -93,9 +105,9 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(MenuFinanceiro);
 
-        MenuHistorico.setText("Histórico");
+        MenuHistorico.setText("Financeiro");
 
-        MenuHistoricogeral.setText("Geral");
+        MenuHistoricogeral.setText("Contas");
         MenuHistoricogeral.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MenuHistoricogeralActionPerformed(evt);
@@ -111,11 +123,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -127,38 +139,38 @@ public class Menu extends javax.swing.JFrame {
 
     private void MenuCadastroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroClientesActionPerformed
         CadastroClientes c = new CadastroClientes();
-        c.setVisible(true);
-        dispose();
+        jPanel1.add(c);
+        c.show();
     }//GEN-LAST:event_MenuCadastroClientesActionPerformed
 
     private void MenuCadastroFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFornecedoresActionPerformed
         CadastroFornecedor c = new CadastroFornecedor();
-        c.setVisible(true);
-        dispose();
+        jPanel1.add(c);
+        c.show();
     }//GEN-LAST:event_MenuCadastroFornecedoresActionPerformed
 
     private void MenuCadastroProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroProdutosActionPerformed
         CadastroProdutos2 c = new CadastroProdutos2();
-        c.setVisible(true);
-        dispose();
+        jPanel1.add(c);
+        c.show();
     }//GEN-LAST:event_MenuCadastroProdutosActionPerformed
 
     private void MenuPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPedidosActionPerformed
         Pedidos c = new Pedidos();
-        c.setVisible(true);
-        dispose();
+        jPanel1.add(c);
+        c.show();
     }//GEN-LAST:event_MenuPedidosActionPerformed
 
     private void MenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVendasActionPerformed
-        Vendas c = new Vendas();
-        c.setVisible(true);
-        dispose();
+        Vendas a = new Vendas();
+        jPanel1.add(a);
+        a.show();
     }//GEN-LAST:event_MenuVendasActionPerformed
 
     private void MenuHistoricogeralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuHistoricogeralActionPerformed
-        HistGeral2 c = new HistGeral2();
-        c.setVisible(true);
-        dispose();
+        Contas c = new Contas();
+        jPanel1.add(c);
+        c.show();
     }//GEN-LAST:event_MenuHistoricogeralActionPerformed
 
     /**
@@ -207,5 +219,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuPedidos;
     private javax.swing.JMenuItem MenuVendas;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
