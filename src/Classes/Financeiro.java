@@ -21,13 +21,6 @@ public class Financeiro {
     private String status;
     private int parcelas;
 
-    /*public Financeiro(double valorunit, int quantidade, double total, Date datacompra, Date vencimento) {
-        this.valorunit = valorunit;
-        this.quantidade = quantidade;
-        this.total = total;
-        this.datacompra = datacompra;
-        this.vencimento = vencimento;
-    }*/
     public void cadastrar(Connection conn) throws SQLException {
         String sqlInsert = "INSERT INTO contas(Parceiro, Produto, ValorUnit, Quantidade, Total, DataCompra, Vencimento, Tipo, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
