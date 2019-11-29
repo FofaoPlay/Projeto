@@ -122,6 +122,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
         Text_Parcelas = new javax.swing.JFormattedTextField();
         Botao_Confirma = new javax.swing.JButton();
         Botao_Sair = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
@@ -192,6 +193,14 @@ public class Pedidos extends javax.swing.JInternalFrame {
                 Botao_SairMouseClicked(evt);
             }
         });
+        Botao_Sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Botao_SairActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Pedidos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,13 +228,18 @@ public class Pedidos extends javax.swing.JInternalFrame {
                                 .addGap(83, 83, 83)))
                         .addComponent(Text_Parcelas, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                        .addComponent(Botao_Sair)))
+                        .addComponent(Botao_Sair))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(10, 10, 10)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -332,6 +346,10 @@ public class Pedidos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_formInternalFrameActivated
 
+    private void Botao_SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Botao_SairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Botao_SairActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Botao_Confirma;
@@ -341,6 +359,7 @@ public class Pedidos extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField Text_Parcelas;
     private javax.swing.JFormattedTextField Text_Quantidade;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
